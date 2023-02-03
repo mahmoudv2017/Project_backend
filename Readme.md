@@ -9,7 +9,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 ### **Admin Routes** [token required]
 
 
->Restaurants
+#### **Restaurants**
 - Index 
 - Show
 - Create 
@@ -23,7 +23,7 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A Create route: `/Restaurants` [POST] 
     * A Delete route: `/Restaurants/:id` [DELETE] 
 
->Subscriptions
+#### **Subscriptions**
 - Index
 - Show
 - Update
@@ -35,7 +35,7 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A Update route : `/subs/:id` [PATCH]
     * A Delete route : `/subs/:id` [DELETE]
 
->Meals
+#### **Meals**
 
 - Index 
 - Show
@@ -50,7 +50,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 
 
->Users
+#### **Users**
 
 - Index
 - Show
@@ -67,7 +67,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 ### **User Routes**
 
 
->**Restaurants**
+#### **Restaurants**
 - Index 
 - Show
 
@@ -75,7 +75,7 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A SHOW route: `/Restaurants/:id` [GET] 
     * A Index route: `/Restaurants/` [GET]
 
->**Meals**
+#### **Meals**
 
 - Index 
 - Show
@@ -84,7 +84,7 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A SHOW route: `/:RestaurantID/meals/:id` [GET] 
     * A Index route: `/:RestaurantID/meals/` [GET] 
 
->**Subscriptions** [token required]
+#### **Subscriptions** [token required]
 
 - Index
 - Show `all` or `by status`
@@ -101,7 +101,7 @@ These are the notes from a meeting with the frontend developer that describe wha
     * An addMeal route: `/:userID/subs/:subID/meals` [POST]
     * A Delete route : `/:userID/subs/:id` [DELETE]
 
->**Profiles**
+#### **Profiles**
 
 - Show
 - Update [token required]
@@ -112,7 +112,7 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A Update route : `/:userID` [PATCH]
     * A Delete route : `/:userID` [DELETE]
 
->**Users**
+#### **Users**
 - Create [token required]
 - Login 
 
@@ -121,7 +121,7 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A Register route: `/register` [POST] 
 
 
->**Reviews** [token required]
+#### **Reviews** [token required]
 - Create 
 - Edit
 - Delete
@@ -132,35 +132,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 -----------
 
 
-<!-- #### Meals
-- Index 
-- Show
-- Meals by category (args: product category)
-- Available Routes
-    * A SHOW route: `Products/:id` [GET] + `query arguments` 
-    * A Index route: `Products/` [GET] 
-
-
-
-#### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
-- Available Routes
-    * A Login route: `Login/` [POST] 
-    * A Register route: `register` [POST] 
-
-
-#### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
-- Available Routes
-    * A SHOW route: `user/:userID/orders` [GET] 
-    * A Index route: `user/:userID/orders/:orderID` [GET] 
-    * A Upldate route: `user/:userID/orders/:orderID` [PATCH] 
-    * A Create route: `user/:userID/orders` [POST] 
-    * A Delete route: `user/:userID/orders/:orderID` [DELETE] 
-    * An addProduct route: `/users/:userID/orders/:orderID/products` [POST]  -->
 
 ## Data Shapes
 
