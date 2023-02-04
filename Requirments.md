@@ -190,6 +190,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 
     - Collection Schema : Reviews (username:string , userID: ObjectID , comment:string , timeCreated:Date )
 
+#### Sections
+- id
+- title
+   - Collection Schema : Sections (title:string)
 
 #### Subscriptions
 - id
