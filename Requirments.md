@@ -170,9 +170,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 - price
 - image
 - hasChoices
+- restaurantID
 - sectionName
 - sectionID
-   - collection Schema : meals(title : string , description:string , price:number , rating:number , image:string , hasChoices:boolean , SectionName:string ,   SectionID:ObjectID )
+   - collection Schema : meals(title : string , restaurantID:ObjectID ,description:string , price:number , rating:number , image:string , hasChoices:boolean , SectionName:string ,   SectionID:ObjectID )
 <!--isItemDiscound (`Optional`) - originalPrice (`Optional`) --->
 
 
