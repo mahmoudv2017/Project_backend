@@ -3,7 +3,6 @@ The Company wants to create an online Food Delivery System to showcase their gre
 
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
-
 -------------------------------------------------------------
 ## ***API Endpoints***
 
