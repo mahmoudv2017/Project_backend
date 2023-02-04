@@ -24,14 +24,14 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A Delete route: `/Restaurants/:id` [DELETE] 
 
 #### **Subscriptions**
-- Index
-- Show `all` or `by status`
+- Index `all` or `by status`
+- Show 
 - Update
 - Delete
 
 - Available Routes
-    * A SHOW route: `/subs` [GET] + `query parametes for status filters`
-    * A Index route : `/subs/:id` [GET]
+    * A SHOW route: `/subs` [GET] 
+    * A Index route : `/subs/:id` [GET] + `query parametes for status filters`
     * A Update route : `/subs/:id` [PATCH]
     * A Delete route : `/subs/:id` [DELETE]
 
@@ -125,7 +125,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Edit
 - Delete
 - Available route
-    * A Create route : `:restaurantID/:userID/reviews` [POST] ?? restaurant or meal
+    * A Create route : `:restaurantID/:userID/reviews` [POST]  `restaurant` 
     * A Edit route :    `:restaurantID/:userID/reviews/:id` [PUT]
     * A Delete route : `:restaurantID/:userID/reviews/:id` [DELETE]
 -----------
@@ -168,7 +168,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 - title
 - description
 - price
-- rating
 - image
 - hasChoices
 - sectionName
@@ -206,5 +205,5 @@ These are the notes from a meeting with the frontend developer that describe wha
    status : string(enum)
    )
 
-#### Cart ? backend or localStorage
+
 
