@@ -9,6 +9,7 @@ require('dotenv').config()
 
 app.use(express.json())
 app.use(cors())
+app.use(express.static("views"))
 
 
 app.listen(process.env.PORT || 4000 , () => {
@@ -16,7 +17,7 @@ app.listen(process.env.PORT || 4000 , () => {
 })
 
 app.get('/' , (req,res) => {
-    res.send("<h1>Hello Server</h1>")
+    res.render("index.html")
 })
 
 app.use("/restaurants" ,RestaurantsRoutes )

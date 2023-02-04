@@ -3,6 +3,7 @@ The Company wants to create an online Food Delivery System to showcase their gre
 
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
+
 -------------------------------------------------------------
 ## ***API Endpoints***
 
@@ -14,7 +15,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Show
 - Create 
 - Delete
-- Update Meals
+- Update
 
 - Aailable Routes
     * A SHOW route: `/Restaurants/:id` [GET] 
@@ -25,12 +26,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### **Subscriptions**
 - Index
-- Show
+- Show `all` or `by status`
 - Update
 - Delete
 
 - Available Routes
-    * A SHOW route: `/subs` [GET]
+    * A SHOW route: `/subs` [GET] + `query parametes for status filters`
     * A Index route : `/subs/:id` [GET]
     * A Update route : `/subs/:id` [PATCH]
     * A Delete route : `/subs/:id` [DELETE]
@@ -38,7 +39,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### **Meals**
 
 - Index 
-- Show
+- Show `by restaurant`
 - Create 
 - Update Meals
 
@@ -54,12 +55,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 - Index
 - Show
-- Delete [token required]
+- Delete 
 - Availble Routes
 
     * A Show route : `/users/:id` [GET]
     * A Index route : `/users` [GET]
-    * A Update route : `/users/:id` [PATCH]
     * A Delete route : `/users/:id` [DELETE]
     
 
@@ -87,7 +87,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### **Subscriptions** [token required]
 
 - Index
-- Show `all` or `by status`
+- Show `all` or `by status` `for that specific user`
 - Update
 - Create 
 - Delete
@@ -165,23 +165,24 @@ These are the notes from a meeting with the frontend developer that describe wha
     - collection schema : restaurants(title:string , image:string ,  speciality:string , rating:number , branches:array , description:string , social_media:Map , reviews:array , meals:array )
 
 #### Meals
-- _id
+- id
 - title
 - description
 - price
-<!-- - isItemDiscound (`Optional`)
-- originalPrice (`Optional`) -->
 - rating
 - image
 - hasChoices
 - sectionName
 - sectionID
+   - collection Schema : meals(title : string , description:string , price:number , rating:number , image:string , hasChoices:boolean , SectionName:string ,   SectionID:ObjectID )
+<!--isItemDiscound (`Optional`) - originalPrice (`Optional`) --->
 
 
-    - collection Schema : meals(title : string , description:string , price:number , rating:number , image:string , hasChoices:boolean , SectionName:string , SectionID:ObjectID )
+
+    
 
 #### Reviews
-- _id
+- id
 - username
 - userID
 - comment
@@ -196,14 +197,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 - UserID
 - Username
 - meals `another collection`
+- Monthly_price
 - Dates
 - timeCreated
 - ExpirationDate
 - status of Subscription (pending or active or expired)
 
-- Collection Schema : Subscriptions ( UserID : ObjectID , Username: String , meals : array , Dates : array , timesCreated:Date , ExpirationDate:Date , 
-status : string(enum)
-)
+   - Collection Schema : Subscriptions ( UserID : ObjectID , Username: String , meals : array , Dates : array , timesCreated:Date , ExpirationDate:Date , 
+   status : string(enum)
+   )
 
 #### Cart ? backend or localStorage
 
