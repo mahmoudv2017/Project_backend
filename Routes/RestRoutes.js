@@ -4,22 +4,20 @@ const router = express.Router()
 const RestModel = require('../Models/RestModel')
 
 
-router.get("/", async (req, res) => {
-    try {
-
-     //  const databaser = await database()
-
-        const results = await RestModel.find()
-
-        // Disconnecting DB
-      //  databaser.disconnect()
-        res.status(200).send(results)
-
-
-    } catch (error) {
-        res.status(500).send("Somthing Went Wrong")
-    }
-    
+router.get("/" , (req,res)=>{
+    res.status(200).send("mah,moud")
+    //code
 })
+
+
+/********* show route **********/
+router.get("/" , (req,res)=>{ 
+    //code
+})
+
+// /********** Update Route  **********/
+// router.patch("/:id" , VerifyToken , (req,res) =>{
+//     //code
+// })
 
 module.exports = router
