@@ -125,7 +125,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Edit
 - Delete
 - Available route
-    * A Create route : `:restaurantID/:userID/reviews` [POST] ?? restaurant or meal
+    * A Create route : `:restaurantID/:userID/reviews` [POST]  `restaurant` 
     * A Edit route :    `:restaurantID/:userID/reviews/:id` [PUT]
     * A Delete route : `:restaurantID/:userID/reviews/:id` [DELETE]
 -----------
