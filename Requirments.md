@@ -141,7 +141,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - gender
 - type (`user` , `Admin`)
 - Date Of Birth
-- subscriptions
+- subscriptions `another collection`
 - password
 - email
 - address `Optional`
