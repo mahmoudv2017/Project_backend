@@ -4,7 +4,8 @@ const router = express.Router()
 const RestModel = require('../Models/RestModel')
 
 
-router.get("/:id" , (req,res)=>{
+router.get("/" , (req,res)=>{
+    res.status(200).send("mah,moud")
     //code
 })
 
@@ -14,9 +15,9 @@ router.get("/" , (req,res)=>{
     //code
 })
 
-/********** Update Route  **********/
-router.patch("/:id" , VerifyToken , (req,res) =>{
-    //code
-})
+// /********** Update Route  **********/
+// router.patch("/:id" , VerifyToken , (req,res) =>{
+//     //code
+// })
 
 module.exports = router
