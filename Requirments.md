@@ -24,14 +24,14 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A Delete route: `/Restaurants/:id` [DELETE] 
 
 #### **Subscriptions**
-- Index
-- Show `all` or `by status`
+- Index `all` or `by status`
+- Show 
 - Update
 - Delete
 
 - Available Routes
-    * A SHOW route: `/subs` [GET] + `query parametes for status filters`
-    * A Index route : `/subs/:id` [GET]
+    * A SHOW route: `/subs` [GET] 
+    * A Index route : `/subs/:id` [GET] + `query parametes for status filters`
     * A Update route : `/subs/:id` [PATCH]
     * A Delete route : `/subs/:id` [DELETE]
 
@@ -40,12 +40,14 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index 
 - Show `by restaurant`
 - Create 
+- Delete
 - Update Meals
 
 - Aailable Routes
     * A SHOW route: `/:RestaurantID/meals/:id` [GET] 
     * A Index route: `/:RestaurantID/meals/` [GET] 
     * A Update route: `/:RestaurantID/meals/:id` [PATCH]
+    * A Delete route: `/:RestaurantID/meals/:id` [DELETE]
     * A Create route: `/:RestaurantID/meals/` [POST] 
 
 
@@ -125,7 +127,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Edit
 - Delete
 - Available route
-    * A Create route : `:restaurantID/:userID/reviews` [POST] ?? restaurant or meal
+    * A Create route : `:restaurantID/:userID/reviews` [POST]  `restaurant` 
     * A Edit route :    `:restaurantID/:userID/reviews/:id` [PUT]
     * A Delete route : `:restaurantID/:userID/reviews/:id` [DELETE]
 -----------
@@ -141,7 +143,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - gender
 - type (`user` , `Admin`)
 - Date Of Birth
-- subscriptions
+- subscriptions `another collection`
 - password
 - email
 - address `Optional`
@@ -168,12 +170,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 - title
 - description
 - price
-- rating
 - image
 - hasChoices
+- restaurantID
 - sectionName
 - sectionID
-   - collection Schema : meals(title : string , description:string , price:number , rating:number , image:string , hasChoices:boolean , SectionName:string ,   SectionID:ObjectID )
+   - collection Schema : meals(title : string , restaurantID:ObjectID ,description:string , price:number , rating:number , image:string , hasChoices:boolean , SectionName:string ,   SectionID:ObjectID )
 <!--isItemDiscound (`Optional`) - originalPrice (`Optional`) --->
 
 
@@ -190,6 +192,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 
     - Collection Schema : Reviews (username:string , userID: ObjectID , comment:string , timeCreated:Date )
 
+#### Sections
+- id
+- title
+   - Collection Schema : Sections (title:string)
 
 #### Subscriptions
 - id
@@ -206,5 +212,5 @@ These are the notes from a meeting with the frontend developer that describe wha
    status : string(enum)
    )
 
-#### Cart ? backend or localStorage
+
 
