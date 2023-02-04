@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
 const colors = require('colors')
+const database = require('./database')
 const cors = require('cors')
 
-const RestaurantsRoutes = require('./Models/Restaurants/rest')
-const database = require('./database')
+const Routes = require('./Routes')
+
 
 require('dotenv').config()
 const {PORT} = process.env
@@ -18,19 +19,15 @@ app.use( express.static("views"))
 
 app.listen(PORT || 4000 , async () => {
    
-    try {
-        
-        console.log( colors.bold.cyan(`Served Hosted at http://localhost:${PORT}`) )
-        // await database() //connect only in models
-        // console.log(colors.green("Connected to DB"))
-    } catch (error) {
-        console.log(colors.red("Failure to connect to DB"))
-    }
+
+    await database()
+    console.log( colors.bold.cyan(`Served Hosted at http://localhost:${PORT}`) )
+   
 
 })
 
 
 
-app.use("/restaurants" ,RestaurantsRoutes )
+app.use("/restaurants" ,Routes.restRotues )
 
 module.exports = app
