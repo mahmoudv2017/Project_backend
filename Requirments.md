@@ -40,12 +40,14 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index 
 - Show `by restaurant`
 - Create 
+- Delete
 - Update Meals
 
 - Aailable Routes
     * A SHOW route: `/:RestaurantID/meals/:id` [GET] 
     * A Index route: `/:RestaurantID/meals/` [GET] 
     * A Update route: `/:RestaurantID/meals/:id` [PATCH]
+    * A Delete route: `/:RestaurantID/meals/:id` [DELETE]
     * A Create route: `/:RestaurantID/meals/` [POST] 
 
 
