@@ -205,5 +205,5 @@ These are the notes from a meeting with the frontend developer that describe wha
    status : string(enum)
    )
 
-#### Cart ? backend or localStorage
+
 
