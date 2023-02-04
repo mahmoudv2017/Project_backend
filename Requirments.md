@@ -168,7 +168,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 - title
 - description
 - price
-- rating
 - image
 - hasChoices
 - sectionName
