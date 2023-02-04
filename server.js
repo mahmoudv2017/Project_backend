@@ -19,12 +19,8 @@ app.use( express.static("views"))
 
 
 app.listen(PORT || 4000 , async () => {
-   
-
     await database()
     console.log( colors.bold.cyan(`Served Hosted at http://localhost:${PORT}`) )
-   
-
 })
 
 
@@ -32,6 +28,6 @@ app.listen(PORT || 4000 , async () => {
 app.use("/restaurants" ,Routes.restRotues )
 //user routes
 //meals restaurants
-//others
+//othersasdasdkjasdlkasdjsha
 
 module.exports = app
