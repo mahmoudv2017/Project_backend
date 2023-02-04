@@ -14,6 +14,7 @@ app.use(express.json())
 app.use(cors())
 app.use( express.static("views"))
 
+//error handling
 
 
 
@@ -29,5 +30,8 @@ app.listen(PORT || 4000 , async () => {
 
 
 app.use("/restaurants" ,Routes.restRotues )
+//user routes
+//meals restaurants
+//others
 
 module.exports = app

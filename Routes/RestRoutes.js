@@ -1,19 +1,16 @@
 const express = require('express')
-const { default: mongoose } = require('mongoose')
 const router = express.Router()
-const database = require('../database')
 const RestModel = require('../Models/RestModel')
 
-router.get("/" , async (req,res)=>{
+router.get("/", async (req, res) => {
+    try {
+        const results = await RestModel.find()
 
+        res.status(200).send(results)
+    } catch (error) {
+        res.status(500).send("Somthing Went Wrong")
+    }
     
-
-    const results = await RestModel.find()
-    
-
-  
-
-    res.status(200).send(results)
 })
 
 module.exports = router
