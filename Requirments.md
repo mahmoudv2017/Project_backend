@@ -113,6 +113,13 @@ These are the notes from a meeting with the frontend developer that describe wha
     * An addMeal route: `/:userID/subs/:subID/meals` [POST]
     * A Delete route : `/:userID/subs/:id` [DELETE]
 
+#### **Promotions**
+- Index 
+- Show
+- Available Routes
+    * A SHOW route: `/Promotions` [GET] 
+    * A Index route : `/Promotions/:id` [GET]
+
 #### **Profiles**
 
 - Show
