@@ -197,8 +197,9 @@ These are the notes from a meeting with the frontend developer that describe wha
 - DateStarted
 - DateExpired
 - meal_id
+- restaurantID
 - old_price
--  collection Schema : Promotions(sale_percentage:String , DateStarted:Date , DateExpired:Date , meal_id:ObjectID , old_Price:number)    
+-  collection Schema : Promotions(sale_percentage:String , DateStarted:Date , DateExpired:Date , meal_id:ObjectID, restaurantID:ObjectID , old_Price:number)    
 
 #### Reviews
 - id
