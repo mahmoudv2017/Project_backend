@@ -35,6 +35,17 @@ These are the notes from a meeting with the frontend developer that describe wha
     * A Update route : `/subs/:id` [PATCH]
     * A Delete route : `/subs/:id` [DELETE]
 
+#### **Promotions**
+- Index 
+- Show
+- Update
+- Delete
+- Available Routes
+    * A SHOW route: `/Promotions` [GET] 
+    * A Index route : `/Promotions/:id` [GET]
+    * A Update route : `/Promotions/:id` [PATCH]
+    * A Delete route : `/Promotions/:id` [DELETE]
+
 #### **Meals**
 
 - Index 
@@ -179,8 +190,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 <!--isItemDiscound (`Optional`) - originalPrice (`Optional`) --->
 
 
+#### Promotions
 
-    
+- ID
+- Sale_Percentage
+- DateStarted
+- DateExpired
+- meal_id
+- old_price
+-  collection Schema : Promotions(sale_percentage:String , DateStarted:Date , DateExpired:Date , meal_id:ObjectID , old_Price:number)    
 
 #### Reviews
 - id
