@@ -2,3 +2,4 @@ PORT = 5000
 USER_NAME = "Mongodb Username"
 PASSWORD = "Mongodb Password"
 Database_Name = "Mongodb DatabaseName"
+NODE_ENV = dev

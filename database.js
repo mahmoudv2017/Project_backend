@@ -1,9 +1,12 @@
 const mongoose = require("mongoose")
 mongoose.set('strictQuery', false);
-const colors = require('colors')
-require('dotenv').config()
-const { USER_NAME , PASSWORD , Database_Name} = process.env
 
+require('dotenv').config()
+const { USER_NAME , PASSWORD , Database_Name , NODE_ENV} = process.env
+
+if(NODE_ENV == 'test'){
+    Database_Name = 'test_db'
+}
 
 
 module.exports = async () => {

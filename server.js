@@ -19,15 +19,57 @@ app.use( express.static("views"))
 
 
 app.listen(PORT || 4000 , async () => {
-    await database()
+    try {
+        await database()
+        console.log(colors.bold.green("Database Connected"))
+    } catch (error) {
+        console.log(colors.bold.red("Couldn't Connect to DB"))
+    }
+    
     console.log( colors.bold.cyan(`Served Hosted at http://localhost:${PORT}`) )
 })
 
 
+/**************************** Main Features *****************************/
 
-app.use("/restaurants" ,Routes.restRotues )
-//user routes
-//meals restaurants
-//othersasdasdkjasdlkasdjsha
+
+
+/******************** Routes ********************/
+
+        /* Mina  */          /*  Mahmoud */             /*  Alyaa */
+/****  meals route (5)  +    restaurants Route (5) +    Reviews Route (3)  ******/
+app.use("/restaurants" ,Routes.RestRotues )
+
+            /* Mona */ 
+/****  Subs Routes for admin (4)  ******/ 
+app.use("/subs" ,Routes.SubRoutes )
+
+            /* Mona */ 
+/****  Promotions Route (4)  ******/
+app.use("/promotions" ,Routes.PromoRoutes )
+
+            /* Alyaa */             /* Mahmoud */
+/******  Profile Routes (4) + User Subscriptions Routes (6)  ******/
+app.use("/users" ,Routes.UserRoutes )
+
+            /* Mina */ 
+/****** Account Routes (2)   *********/
+app.use("/account" , Routes.AccountRoutes)
+
+
+
+
+
+/********** MiddleWare **********/
+
+// Creating Images Upload Middleware using multer -------- Mahmoud
+// Creating Authentication with JWT middleware -------- ??
+
+
+
+/*
+        Secondary Feature
+app.use("/sections" ,Routes.restRotues )
+*/
 
 module.exports = app
