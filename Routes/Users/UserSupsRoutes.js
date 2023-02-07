@@ -1,5 +1,6 @@
 
-const SubModel = require('../../Models/Subs/SubModel')
+
+const SubControls = require('../../controllers/Users/UserSubControl')
 
 module.exports = function(router){
 
@@ -13,53 +14,13 @@ module.exports = function(router){
     */
 
 
-    router.get("/:userID/subs" , async (req,res) => {
-        try {
-            const results = await SubModel.find({userID:req.params.userID})
-            res.status(200).send(results)
-        } catch (error) {
-            res.status(500).send("Error ")
-        }
-    } )
+    router.get("/:userID/subs" , SubControls.IndexFunc)
 
-    router.get("/:userID/subs/:id" , async (req,res) => {
-        try {
-            const results = await SubModel.findById(req.params.id)
-            res.status(200).send(results)
-        } catch (error) {
-            res.status(500).send("Error ")
-        }
-    } )
+    router.get("/:userID/subs/:id" , SubControls.ShowFunc)
 
-    router.patch("/:userID/subs/:id" , async (req,res) => {
-     
-        try {
-            const results = await SubModel.findByIdAndUpdate(req.params.id,req.body)
-            res.status(200).send(results)
-        } catch (error) {
-            res.status(500).send("Error ")
-        }
-    } )
+    router.patch("/:userID/subs/:id" ,SubControls.EditFunc )
 
-    router.post("/:userID/subs" , async (req,res) => {
-     
-        try {
-            const results = await SubModel.create(req.body)
-     
-            res.status(200).send(results)
-        } catch (error) {
-            res.status(500).send("Error ")
-        }
-    } )
+    router.post("/:userID/subs" , SubControls.CreateFunc )
 
-    router.delete("/:userID/subs/:id" , async (req,res) => {
-     
-        try {
-            const results = await SubModel.findByIdAndRemove(req.params.id)
-     
-            res.status(200).send(results)
-        } catch (error) {
-            res.status(500).send("Error ")
-        }
-    } )
+    router.delete("/:userID/subs/:id" , SubControls.DeleteFunc)
 }
