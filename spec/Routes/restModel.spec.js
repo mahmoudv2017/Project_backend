@@ -4,7 +4,7 @@ const {faker} = require('@faker-js/faker')
 
 
 
-describe("Endpoint Testing For all Restaurant Related Routes" , () => {
+fdescribe("Endpoint Testing For all Restaurant Related Routes" , () => {
     const request = supertest(app)
 
     /**** Mahmoud Tests ***/ 
@@ -129,17 +129,17 @@ describe("Endpoint Testing For all Restaurant Related Routes" , () => {
 
     /**** Alyaa Tests ***/ 
 
-    describe("Endpoint testing for the Reviews routes" , () => {
+    fdescribe("Endpoint testing for the Reviews routes" , () => {
         const request = supertest(app)
         let testID ,userID
         beforeAll( async () => {
             testID = (await request.get("/restaurants")).body[0]._id;
-            userID = (await request.get("/users"))
+            userID = (await request.get("/users")).body[0]._id
         })
 
     
     
-        let test_obj = ["username","comment","timeCreated"] //???
+        let test_obj = ["username","comment","timeCreated"] 
         let payload =  {
             username: faker.animal.lion() ,
             comment:faker.image.avatar(),
