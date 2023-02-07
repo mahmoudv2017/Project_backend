@@ -167,7 +167,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - username
 - gender
 - type (`user` , `Admin`)
-- Date Of Birth
+- DOB `Date Of Birth`
 - subscriptions `another collection`
 - password
 - email
