@@ -23,6 +23,7 @@ app.listen(PORT || 4000 , async () => {
         await database()
         console.log(colors.bold.green("Database Connected"))
     } catch (error) {
+        console.log(error)
         console.log(colors.bold.red("Couldn't Connect to DB"))
     }
     
