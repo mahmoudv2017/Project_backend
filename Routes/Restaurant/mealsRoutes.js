@@ -17,6 +17,8 @@
 
 
 module.exports = function(router){
+
+    /* Index Route */
     router.get("/:RestaurantID/meals" , (req,res) => {
         res.status(200).send(req.params)
     })
