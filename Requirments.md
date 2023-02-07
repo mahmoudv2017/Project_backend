@@ -232,14 +232,14 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Subscriptions
 - id
-- UserID
-- Username
+- userID
+- username
 - meals `another collection`
-- Monthly_price
+- monthly_price
 - Dates
 - timeCreated
 - ExpirationDate
-- SubState (pending or active or expired)
+- subState (pending or active or expired)
 
    - Collection Schema : Subscriptions ( UserID : ObjectID , Username: String , meals : array , Dates : array , timesCreated:Date , ExpirationDate:Date , 
    status : string(enum)
