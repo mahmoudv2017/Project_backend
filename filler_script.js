@@ -6,6 +6,7 @@ const colors = require('colors')
 const restModel = require('./Models/Restaurants/RestModel')
 const UserModel = require('./Models/Users/UserModel')
 const SubModel = require('./Models/Subs/SubModel')
+const MealModel = require('./Models/Restaurants/MealsModel')
 
 let [,, type, count] = process.argv 
 console.log(type , count)
@@ -13,7 +14,7 @@ count = count || 5;
 
 const fillUsers = async (count) => {
     try {
-        await database();
+        await database.Connect();
         let payload = []
         let nowDate = new Date();
         console.log(`${nowDate.getDate()}-${nowDate.getMonth()+1}-${nowDate.getFullYear()}`)
@@ -79,13 +80,13 @@ const fillSubs = async (count) => {
 
 const fillRestaurants = async (count) => {
     try {
-        await database();
+        await database.Connect();
         let payload = []
         for (let index = 0; index < count; index++) {
             payload.push(
                 {
                     title: faker.animal.lion() ,
-                    image:faker.image.avatar(),
+                    image:	faker.image.url(),
                     speciality: faker.lorem.words(4) ,
                     rating: (Math.random() * 5 ).toFixed(2) +1,
                     branches: [faker.address.cityName() + faker.address.streetAddress()],
@@ -99,6 +100,35 @@ const fillRestaurants = async (count) => {
         }
 
         return await restModel.insertMany(payload)
+
+    } catch (error) {
+        throw new Error(error)
+    }
+
+}
+
+const fillMeals = async (count) => {
+ 
+    try {
+        await database.Connect();
+        const restID = (await restModel.find())[0]._id
+        let payload = []
+        for (let index = 0; index < count; index++) {
+            payload.push(
+                {
+                    title:faker.finance.accountName(),
+                    description:faker.lorem.lines(2),
+                    price:  Math.round(Math.random()*200).toFixed(1) ,
+                    image:faker.image.imageUrl(),
+                    hasChoices:false,
+                    restaurantID:restID,
+                    sectionName:"breakfast",
+                    sectionID:'63e242951baea9c9e47ec76f'
+                }
+            )
+        }
+
+        return await MealModel.insertMany(payload)
 
     } catch (error) {
         throw new Error(error)
@@ -124,6 +154,14 @@ switch(type){
         break;
     case 'subs':
         fillSubs(count).then(() => {
+            console.log(colors.bold.magenta("Data Added Successfully"))
+            process.exit(0);
+        })
+        
+        break;
+
+    case 'meals':
+        fillMeals(count).then(() => {
             console.log(colors.bold.magenta("Data Added Successfully"))
             process.exit(0);
         })

@@ -20,7 +20,7 @@ app.use( express.static("views"))
 
 app.listen(PORT || 4000 , async () => {
     try {
-        await database()
+        await database.Connect()
         console.log(colors.bold.green("Database Connected"))
     } catch (error) {
         console.log(error)

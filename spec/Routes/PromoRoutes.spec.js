@@ -35,7 +35,7 @@ describe("Tests the Promotions Endpoints" , () => {
         let res = await request.post(`/promotions`).send(payload);
      
         expect( res.status ).toEqual(200)
-        expect( Object.keys(res.body[0]) ).toEqual(jasmine.arrayContaining(test_obj))
+        expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
     })
 
     it("expects a Promotion to be Updated successfully" , async () => {
@@ -47,7 +47,7 @@ describe("Tests the Promotions Endpoints" , () => {
 
     it("expects a Promotion to be Deleted successfully" , async () => {
         let rat = await request.post(`/promotions`).send(payload);
-        let res = await request.delete(`/promotions/${rat.body[0]._id}`);
+        let res = await request.delete(`/promotions/${rat.body._id}`);
         expect( res.status ).toEqual(200)
         expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
     })

@@ -4,7 +4,6 @@ module.exports = {
     IndexFunc : async (req,res) => {
         try {
             let {status} = req.query
-            console.log(status)
             let results;
             if(status){
                 results = await SubModel.find({userID:req.params.userID , substate:status})

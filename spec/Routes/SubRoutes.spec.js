@@ -26,7 +26,7 @@ describe("Testing the Subscriptions Endpoints" , () => {
 
     it("expects the Show Route to be successfull" , async () => {
             
-        let rat = await request.get('/subs')
+        let rat = await request.get(`/subs`)
         let res = await request.get(`/subs/${rat.body[0]._id}`);
         expect( res.status ).toEqual(200)
         expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
@@ -45,7 +45,7 @@ describe("Testing the Subscriptions Endpoints" , () => {
     it("expects a subscription to be Deleted successfull" , async () => {
         let rat = await request.post("/subs").send(payload);
 
-        let test_api = await request.delete(`/subs/${rat.body[0]._id}`);
+        let test_api = await request.delete(`/subs/${rat.body._id}`);
         expect( test_api.status ).toEqual(200)
         expect( Object.keys(test_api.body) ).toEqual(jasmine.arrayContaining(test_obj))
     })

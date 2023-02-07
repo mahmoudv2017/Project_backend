@@ -4,12 +4,12 @@ const {faker} = require('@faker-js/faker')
 
 
 
-fdescribe("Endpoint Testing For all Restaurant Related Routes" , () => {
+describe("Endpoint Testing For all Restaurant Related Routes" , () => {
     const request = supertest(app)
 
     /**** Mahmoud Tests ***/ 
 
-    fdescribe("Endpoint testing for the restaurant routes" , () => {
+    describe("Endpoint testing for the restaurant routes" , () => {
        
         let test_obj = ["title","description","image","rating"]
         let payload =  {
@@ -42,13 +42,13 @@ fdescribe("Endpoint Testing For all Restaurant Related Routes" , () => {
             
             let res = await request.post("/restaurants").send(payload);
             expect( res.status ).toEqual(200)
-            expect( Object.keys(res.body[0]) ).toEqual(jasmine.arrayContaining(test_obj))
+            expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
     
         it("expects a restaurant to be Deleted successfull" , async () => {
             let rat = await request.post("/restaurants").send(payload);
     
-            let test_api = await request.delete(`/restaurants/${rat.body[0]._id}`);
+            let test_api = await request.delete(`/restaurants/${rat.body._id}`);
             expect( test_api.status ).toEqual(200)
             expect( Object.keys(test_api.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
@@ -106,13 +106,13 @@ fdescribe("Endpoint Testing For all Restaurant Related Routes" , () => {
             
             let res = await request.post(`/restaurants/${testID}/meals/`).send(payload);
             expect( res.status ).toEqual(200)
-            expect( Object.keys(res.body[0]) ).toEqual(jasmine.arrayContaining(test_obj))
+            expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
     
         it("expects a Meal to be Deleted successfull" , async () => {
             let rat = await request.post(`/restaurants/${testID}/meals/`).send(payload);
     
-            let test_api = await request.delete(`/restaurants/${testID}/meals/${rat.body[0]._id}`);
+            let test_api = await request.delete(`/restaurants/${testID}/meals/${rat.body._id}`);
             expect( test_api.status ).toEqual(200)
             expect( Object.keys(test_api.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
@@ -160,19 +160,19 @@ fdescribe("Endpoint Testing For all Restaurant Related Routes" , () => {
             
             let res = await request.post(`/restaurants/${testID}/users/${userID}/reviews`).send(payload);
             expect( res.status ).toEqual(200)
-            expect( Object.keys(res.body[0]) ).toEqual(jasmine.arrayContaining(test_obj))
+            expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
     
         it("expects a Review to be Deleted successfull" , async () => {
             let rat = await request.post(`/restaurants/${testID}/users/${userID}/reviews`).send(payload);
     
-            let test_api = await request.delete(`/restaurants/${testID}/users/${userID}/reviews/${rat.body[0]._id}`);
+            let test_api = await request.delete(`/restaurants/${testID}/users/${userID}/reviews/${rat.body._id}`);
             expect( test_api.status ).toEqual(200)
             expect( Object.keys(test_api.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
     
         it("expects a Review to be Updated successfull" , async () => {
-            let rat = await request.get(`/restaurants/${testID}/users/${userID}/reviews/${rat.body[0]._id}`);
+            let rat = await request.get(`/restaurants/${testID}/users/${userID}/reviews`);
             let test_api = await request.patch(`/restaurants/${testID}/users/${userID}/reviews/${rat.body[0]._id}`).send({title:"Updated Title"});
             
             expect( test_api.status ).toEqual(200)

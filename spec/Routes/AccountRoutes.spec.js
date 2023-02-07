@@ -23,14 +23,14 @@ describe("Tests the Accounts Endpoints" , () => {
     }
 
     it("expects the Login Route to return valid JSON" , async () => {
-        let res = await request.post("/login").send(payload)
+        let res = await request.post("/login").send(Login_payload)
         expect( res.status ).toEqual(200)
-        expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(Login_payload))
+        expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(["token"]))
     })
 
     it("expects the user to be created" , async () => {
         let res = await request.post("/register").send(Register_payload)
         expect( res.status ).toEqual(200)
-        // expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(token))
+         expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(['username','firstname']))
     })
 })

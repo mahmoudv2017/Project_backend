@@ -26,7 +26,7 @@ module.exports = {
     CreateFunc : async (req,res)=>{
         let payload = req.body
         try {
-            const results = await RestModel.insertMany([payload])
+            const results = await RestModel.create(payload)
             res.status(200).send(results)
         } catch (error) {
             res.status(500).send("Error DOing SOmthing") //till we do error handlers

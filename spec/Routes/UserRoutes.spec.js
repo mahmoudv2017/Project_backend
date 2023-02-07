@@ -1,7 +1,7 @@
 const supertest = require('supertest')
 const app = require('../../server')
 
-fdescribe("Testing The Endpoints of the Users Routes" , () => {
+describe("Testing The Endpoints of the Users Routes" , () => {
     const request = supertest(app)
     const Register_payload = {
         username : 'mahmoudv2023',
@@ -23,6 +23,18 @@ fdescribe("Testing The Endpoints of the Users Routes" , () => {
             A Update route : /users/:userID [PATCH]
             A Delete route : /users/:userID [DELETE]
         */
+
+            const test_obj = [
+                'username',
+                'firstName',
+                'lastName',
+                'gender',
+                'type',
+                'DOB',
+                'password',
+                'email'
+        
+            ]
 
         it("expects the Index route to be successfull" , async () => {
             let res = await request.get("/users");
@@ -46,7 +58,7 @@ fdescribe("Testing The Endpoints of the Users Routes" , () => {
 
         it ("expects a user to be deleted successfull" , async () => {
             let rat = await request.post("/register").send(Register_payload)
-            let res = await request.delete(`/users/${rat.body[0]._id}`);
+            let res = await request.delete(`/users/${rat.body._id}`);
             expect( res.status ).toEqual(200)
             expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
@@ -54,7 +66,7 @@ fdescribe("Testing The Endpoints of the Users Routes" , () => {
 
 
     /** Mahmoud **/
-    fdescribe("Testing The User Subscriptions Routes" , ()=>{
+    describe("Testing The User Subscriptions Routes" , ()=>{
 
         /*
             A Index route: /users/:userID/subs [GET] + query arguments for status
@@ -72,7 +84,7 @@ fdescribe("Testing The Endpoints of the Users Routes" , () => {
             user = (await request.get("/users")).body[0]
             userID = user._id
             let nowDate = new Date()
-            console.log(userID)
+           
             payload = {
                 userID : userID,
                 username : user.username,

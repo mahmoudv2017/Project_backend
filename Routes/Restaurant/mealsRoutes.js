@@ -14,12 +14,18 @@
 // })
 
 
-
+const Mealmode = require('../../Models/Restaurants/MealsModel')
 
 module.exports = function(router){
 
     /* Index Route */
-    router.get("/:RestaurantID/meals" , (req,res) => {
-        res.status(200).send(req.params)
+    router.get("/:RestID/meals" , async (req,res) => {
+        try {
+            const results = await Mealmode.find({restaurantID:req.params.RestID})
+            res.status(200).send(results)
+        } catch (error) {
+            res.status(500).send("Error")
+        }
     })
+
 }

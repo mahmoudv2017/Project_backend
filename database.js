@@ -9,8 +9,16 @@ if(NODE_ENV == 'test'){
 }
 
 
-module.exports = async () => {
-  
- return await mongoose.connect(`mongodb+srv://${USER_NAME}:${PASSWORD}@firstcluster.oz3c4.mongodb.net/${Database_Name}`)
+module.exports =  {
+
+    Connect : async () => {
+        return await mongoose.connect(`mongodb+srv://${USER_NAME}:${PASSWORD}@firstcluster.oz3c4.mongodb.net/${Database_Name}`)
+
+    }
+  ,
+
+  Disconnect : async () => {
+    return await mongoose.disconnect();
+  }
     
 }
