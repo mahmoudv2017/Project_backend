@@ -6,7 +6,8 @@ const colors = require('colors')
 const restModel = require('./Models/Restaurants/RestModel')
 const UserModel = require('./Models/Users/UserModel')
 const SubModel = require('./Models/Subs/SubModel')
-const MealModel = require('./Models/Restaurants/MealsModel')
+const MealModel = require('./Models/Restaurants/MealsModel');
+const MealsModel = require('./Models/Restaurants/MealsModel');
 
 let [,, type, count] = process.argv 
 console.log(type , count)
@@ -108,7 +109,10 @@ const fillRestaurants = async (count) => {
 }
 
 const fillMeals = async (count) => {
-
+    // uncomment if you want to empty the collection
+    // await database.Connect();
+    // await MealsModel.deleteMany({})
+    // return
     try {
         await database.Connect();
         const restID = (await restModel.find())[0]._id
@@ -118,7 +122,7 @@ const fillMeals = async (count) => {
                 {
                     title:faker.finance.accountName(),
                     description:faker.lorem.lines(2),
-                    price:  Math.round(Math.random()*200).toFixed(1) ,
+                    price:  (Math.random()*200).toFixed(2) ,
                     image:faker.image.imageUrl(),
                     hasChoices:false,
                     restaurantID:restID,
