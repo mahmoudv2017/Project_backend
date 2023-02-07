@@ -30,21 +30,24 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Delete
 
 - Available Routes
-    * A SHOW route: `/subs` [GET] 
-    * A Index route : `/subs/:id` [GET] + `query parametes for status filters`
+    * A Index route: `/subs` [GET] + `query parametes for status filters`
+    * A Show route : `/subs/:id` [GET] 
+    * A Create route : `/subs` [POST] `just for testing purposes` 
     * A Update route : `/subs/:id` [PATCH]
     * A Delete route : `/subs/:id` [DELETE]
 
 #### **Promotions**
 - Index 
 - Show
+- Create
 - Update
 - Delete
 - Available Routes
-    * A SHOW route: `/Promotions` [GET] 
-    * A Index route : `/Promotions/:id` [GET]
-    * A Update route : `/Promotions/:id` [PATCH]
-    * A Delete route : `/Promotions/:id` [DELETE]
+    * A SHOW route: `/promotions` [GET] 
+    * A Create route: `/promotions` [POST]
+    * A Index route : `/promotions/:id` [GET]
+    * A Update route : `/promotions/:id` [PATCH]
+    * A Delete route : `/promotions/:id` [DELETE]
 
 #### **Meals**
 
@@ -55,11 +58,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Update Meals
 
 - Aailable Routes
-    * A SHOW route: `/:RestaurantID/meals/:id` [GET] 
-    * A Index route: `/:RestaurantID/meals/` [GET] 
-    * A Update route: `/:RestaurantID/meals/:id` [PATCH]
-    * A Delete route: `/:RestaurantID/meals/:id` [DELETE]
-    * A Create route: `/:RestaurantID/meals/` [POST] 
+    * A SHOW route: `/Restaurants/:RestaurantID/meals/:id` [GET] 
+    * A Index route: `/Restaurants/:RestaurantID/meals/` [GET] 
+    * A Update route: `/Restaurants/:RestaurantID/meals/:id` [PATCH]
+    * A Delete route: `/Restaurants/:RestaurantID/meals/:id` [DELETE]
+    * A Create route: `/Restaurants/:RestaurantID/meals/` [POST] 
 
 
 
@@ -93,8 +96,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Show
 
 - Aailable Routes
-    * A SHOW route: `/:RestaurantID/meals/:id` [GET] 
-    * A Index route: `/:RestaurantID/meals/` [GET] 
+    * A SHOW route: `/Restaurants/:RestaurantID/meals/:id` [GET] 
+    * A Index route: `/Restaurants/:RestaurantID/meals/` [GET] 
 
 #### **Subscriptions** [token required]
 
@@ -106,12 +109,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Add meals 
 
 - Available Routes
-    * A SHOW route: `/:userID/subs` [GET] + `query arguments for status`
-    * A Index route: `/:userID/subs/:id` [GET]
-    * A Update route : `/:userID/subs/:id` [PATCH]
-    * A Create route : `/:userID/subs` [POST]
-    * An addMeal route: `/:userID/subs/:subID/meals` [POST]
-    * A Delete route : `/:userID/subs/:id` [DELETE]
+    * A Index route: `/users/:userID/subs` [GET] + `query arguments for status`
+    * A Show route: `/users/:userID/subs/:id` [GET]
+    * A Update route : `/users/:userID/subs/:id` [PATCH]
+    * A Create route : `/users/:userID/subs` [POST]
+    * An addMeal route: `/users/:userID/subs/:subID/meals` [POST]
+    * A Delete route : `/users/:userID/subs/:id` [DELETE]
 
 #### **Promotions**
 - Index 
@@ -127,11 +130,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Delete  [token required]
 
 - Available Routes
-    * A SHOW route: `/:userID` [GET]
-    * A Update route : `/:userID` [PATCH]
-    * A Delete route : `/:userID` [DELETE]
+    * A SHOW route: `/users/:userID` [GET]
+    * A Update route : `/users/:userID` [PATCH]
+    * A Delete route : `/users/:userID` [DELETE]
 
-#### **Users**
+#### **account**
 - Create [token required]
 - Login 
 
@@ -144,10 +147,13 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Create 
 - Edit
 - Delete
+- Index
 - Available route
-    * A Create route : `:restaurantID/:userID/reviews` [POST]  `restaurant` 
-    * A Edit route :    `:restaurantID/:userID/reviews/:id` [PUT]
-    * A Delete route : `:restaurantID/:userID/reviews/:id` [DELETE]
+    * A Index route : `/restaurants/:restaurantID/reviews` [GET]
+    * A Index by userID route : `/restaurants/:restaurantID/users/:userID/reviews` [GET]
+    * A Create route : `/restaurants/:restaurantID/users/:userID/reviews` [POST]  `restaurant` 
+    * A Edit route :    `/restaurants/:restaurantID/users/:userID/reviews/:id` [PUT]
+    * A Delete route : `/restaurants/:restaurantID/users/:userID/reviews/:id` [DELETE]
 -----------
 
 
@@ -158,6 +164,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - id
 - firstName
 - lastName
+- username
 - gender
 - type (`user` , `Admin`)
 - Date Of Birth
@@ -232,7 +239,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Dates
 - timeCreated
 - ExpirationDate
-- status of Subscription (pending or active or expired)
+- SubState (pending or active or expired)
 
    - Collection Schema : Subscriptions ( UserID : ObjectID , Username: String , meals : array , Dates : array , timesCreated:Date , ExpirationDate:Date , 
    status : string(enum)
