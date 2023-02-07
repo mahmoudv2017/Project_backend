@@ -17,7 +17,6 @@ app.use( express.static("views"))
 //error handling
 
 
-
 app.listen(PORT || 4000 , async () => {
     try {
         await database.Connect()
@@ -72,5 +71,11 @@ app.use("/account" , Routes.AccountRoutes)
         Secondary Feature
 app.use("/sections" ,Routes.restRotues )
 */
+
+
+app.use((err, req, res, next) => {
+    console.error(err)
+    res.status(500).send('Something broke!')
+  })
 
 module.exports = app

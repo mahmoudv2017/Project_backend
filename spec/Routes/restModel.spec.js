@@ -4,7 +4,7 @@ const {faker} = require('@faker-js/faker')
 
 
 
-fdescribe("Endpoint Testing For all Restaurant Related Routes" , () => {
+describe("Endpoint Testing For all Restaurant Related Routes" , () => {
     const request = supertest(app)
 
     /**** Mahmoud Tests ***/ 
@@ -129,7 +129,7 @@ fdescribe("Endpoint Testing For all Restaurant Related Routes" , () => {
 
     /**** Alyaa Tests ***/ 
 
-    fdescribe("Endpoint testing for the Reviews routes" , () => {
+    describe("Endpoint testing for the Reviews routes" , () => {
         const request = supertest(app)
         let testID ,userID
         beforeAll( async () => {

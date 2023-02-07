@@ -24,7 +24,7 @@ module.exports = function(router){
             const results = await Mealmode.find({restaurantID:req.params.RestID})
             res.status(200).send(results)
         } catch (error) {
-            res.status(500).send("Error")
+            next(error)
         }
     })
 

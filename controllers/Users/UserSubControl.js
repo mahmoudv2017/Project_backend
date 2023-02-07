@@ -1,7 +1,7 @@
 const SubModel = require('../../Models/Subs/SubModel')
 
 module.exports = {
-    IndexFunc : async (req,res) => {
+    IndexFunc : async (req,res,next) => {
         try {
             let {status} = req.query
             let results;
@@ -13,46 +13,46 @@ module.exports = {
             }
             res.status(200).send(results)
         } catch (error) {
-            res.status(500).send("Error ")
+           next(error)
         }
     } ,
 
-    ShowFunc : async (req,res) => {
+    ShowFunc : async (req,res,next) => {
         try {
             const results = await SubModel.findById(req.params.id)
             res.status(200).send(results)
         } catch (error) {
-            res.status(500).send("Error ")
+           next(error)
         }
     }  ,
 
-    EditFunc :  async (req,res) => {
+    EditFunc :  async (req,res,next) => {
      
         try {
             const results = await SubModel.findByIdAndUpdate(req.params.id,req.body)
             res.status(200).send(results)
         } catch (error) {
-            res.status(500).send("Error ")
+           next(error)
         }
     } ,
 
-    CreateFunc : async (req,res) => {
+    CreateFunc : async (req,res,next) => {
      
         try {
             const results = await SubModel.create(req.body)
             res.status(200).send(results)
         } catch (error) {
-            res.status(500).send("Error ")
+           next(error)
         }
     } ,
 
     DeleteFunc : 
-        async (req,res) => {
+        async (req,res,next) => {
             try {
                 const results = await SubModel.findByIdAndRemove(req.params.id)
                 res.status(200).send(results)
             } catch (error) {
-                res.status(500).send("Error ")
+               next(error)
             }
         } 
      ,

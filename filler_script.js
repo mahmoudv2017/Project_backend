@@ -108,7 +108,7 @@ const fillRestaurants = async (count) => {
 }
 
 const fillMeals = async (count) => {
- 
+
     try {
         await database.Connect();
         const restID = (await restModel.find())[0]._id
