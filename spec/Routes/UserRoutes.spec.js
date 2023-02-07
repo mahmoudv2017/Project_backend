@@ -1,6 +1,7 @@
 const supertest = require('supertest')
+const app = require('../../server')
 
-describe("Testing The Endpoints of the Users Routes" , () => {
+fdescribe("Testing The Endpoints of the Users Routes" , () => {
     const request = supertest(app)
     const Register_payload = {
         username : 'mahmoudv2023',
@@ -53,7 +54,7 @@ describe("Testing The Endpoints of the Users Routes" , () => {
 
 
     /** Mahmoud **/
-    describe("Testing The User Subscriptions Routes" , ()=>{
+    fdescribe("Testing The User Subscriptions Routes" , ()=>{
 
         /*
             A Index route: /users/:userID/subs [GET] + query arguments for status
@@ -64,17 +65,23 @@ describe("Testing The Endpoints of the Users Routes" , () => {
             A Delete route : /users/:userID/subs/:id [DELETE]
         */
         
-        const test_obj = ["UserID","Username","meals","Monthly_price","Dates","timeCreated","SubState"]
-        let payload , userID;
+        const test_obj = ["userID","username","meals","monthly_price","Dates","timeCreated","substate","ExpirationDate"]
+        let payload , userID , user;
 
         beforeAll( async () => {
-            userID = (await request.get("/users")).body[0]
+            user = (await request.get("/users")).body[0]
+            userID = user._id
+            let nowDate = new Date()
+            console.log(userID)
             payload = {
-                UserID : userID._id,
-                Username : userID.username,
-                Monthly_price : 15.99,
+                userID : userID,
+                username : user.username,
+                monthly_price : 15.99,
+                Dates : [nowDate.getHours() +" : "+ nowDate.getMinutes() + " AM"],
                 timeCreated: new Date(),
-                SubState : 'pending'
+                ExpirationDate : new Date(),
+                meals:[],
+                substate : 'pending'
             }
         } )
 
@@ -93,20 +100,20 @@ describe("Testing The Endpoints of the Users Routes" , () => {
 
         it ("expects a user subscriptions to be updated successfull" , async () => {
             let rat = await request.get(`/users/${userID}/subs`);
-            let res = await request.patch(`/users/${userID}/subs/${rat.body[0]._id}`).send({SubState:'Updated'});
+            let res = await request.patch(`/users/${userID}/subs/${rat.body[0]._id}`).send({subState:'active'});
             expect( res.status ).toEqual(200)
-            expect( Object.keys(res.body[0]) ).toEqual(jasmine.arrayContaining(test_obj))
+            expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
 
         it ("expects a user subscriptions to be Created successfull" , async () => {
             let res = await request.post(`/users/${userID}/subs`).send(payload);
             expect( res.status ).toEqual(200)
-            expect( Object.keys(res.body[0]) ).toEqual(jasmine.arrayContaining(test_obj))
+            expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
 
         it ("expects a user subscriptions to be Deleted successfull" , async () => {
             let rat = await request.post(`/users/${userID}/subs`).send(payload);
-            let test_api = await request.delete(`/users/${userID}/subs/${rat.body[0]._id}`);
+            let test_api = await request.delete(`/users/${userID}/subs/${rat.body._id}`);
             expect( test_api.status ).toEqual(200)
             expect( Object.keys(test_api.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })

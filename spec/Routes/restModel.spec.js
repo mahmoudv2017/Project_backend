@@ -4,12 +4,12 @@ const {faker} = require('@faker-js/faker')
 
 
 
-describe("Endpoint Testing For all Restaurant Related Routes" , () => {
+fdescribe("Endpoint Testing For all Restaurant Related Routes" , () => {
     const request = supertest(app)
 
     /**** Mahmoud Tests ***/ 
 
-    describe("Endpoint testing for the restaurant routes" , () => {
+    fdescribe("Endpoint testing for the restaurant routes" , () => {
        
         let test_obj = ["title","description","image","rating"]
         let payload =  {

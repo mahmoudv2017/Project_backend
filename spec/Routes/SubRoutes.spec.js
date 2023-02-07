@@ -3,7 +3,7 @@ const app = require('../../server')
 
 describe("Testing the Subscriptions Endpoints" , () => {
     const request = supertest(app)
-    const test_obj = ["UserID","Username","meals","Monthly_price","Dates","timeCreated","SubState"]
+    const test_obj = ["userID","username","meals","monthly_price","Dates","timeCreated","subState"]
     let payload;
 
     beforeAll( async () => {

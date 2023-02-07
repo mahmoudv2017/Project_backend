@@ -2,13 +2,18 @@ const express = require('express')
 const userSups = require('./UserSupsRoutes');
 const router = express.Router()
 
-router.use('/userSubs' , userSups)
+const ProfileControl = require('../../controllers/Users/ProfileControl')
 
 
-/******* User Routes ******/
-router.get("/" , (req,res)=>{
-    console.log(req.params)
-    res.status(200).send("asdasd")
-})
+//========================================
+//          User Subscriptions Routes
+//========================================
+userSups(router)
+
+
+//========================================
+//          Profile Routes
+//========================================
+router.get("/" , ProfileControl.IndexFunc)
 
 module.exports = router

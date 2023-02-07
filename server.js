@@ -36,7 +36,7 @@ app.listen(PORT || 4000 , async () => {
 
 /******************** Routes ********************/
 
-        /* Mina  */          /*  Mahmoud */             /*  Alyaa */
+        /* Mina */              /* Mahmoud */             /* Alyaa */
 /****  meals route (5)  +    restaurants Route (5) +    Reviews Route (3)  ******/
 app.use("/restaurants" ,Routes.RestRotues )
 
