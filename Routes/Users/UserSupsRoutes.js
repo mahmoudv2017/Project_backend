@@ -2,6 +2,7 @@
 
 const SubControls = require('../../controllers/Users/UserSubControl')
 
+
 module.exports = function(router){
 
     /*
@@ -19,6 +20,8 @@ module.exports = function(router){
     router.get("/:userID/subs/:id" , SubControls.ShowFunc)
 
     router.patch("/:userID/subs/:id" ,SubControls.EditFunc )
+
+    router.post("/:userID/subs/:subID/meals/:mealID" , SubControls.AddMealFunc)
 
     router.post("/:userID/subs" , SubControls.CreateFunc )
 

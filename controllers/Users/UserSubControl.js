@@ -1,6 +1,22 @@
 const SubModel = require('../../Models/Subs/SubModel')
 
 module.exports = {
+
+    AddMealFunc : async(req,res,next)=>{
+        try {
+            const sub = await SubModel.findById(req.params.subID)
+            if(sub == {}){
+                next(new Error("No Subscription with such ID exists"))
+                return
+            }
+            sub.meals.push(req.params.mealID)
+            const results = await SubModel.findByIdAndUpdate(req.params.subID,
+                {meals : sub.meals})
+            res.status(200).send(results)
+        } catch (error) {
+            next(error)
+        }
+    },
     IndexFunc : async (req,res,next) => {
         try {
             let {status} = req.query

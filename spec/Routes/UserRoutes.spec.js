@@ -117,6 +117,15 @@ describe("Testing The Endpoints of the Users Routes" , () => {
             expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
         })
 
+        it ("expects a meal to be added to the subscription" , async() => {
+            let rat = await request.get(`/users/${userID}/subs`);
+            let newMeal = '63e253ce76eaa2ba94d3f515'
+            let res = await request.post(`/users/${userID}/subs/${rat.body[0]._id}/meals/${newMeal}`)
+            expect( res.status ).toEqual(200)
+            expect( Object.keys(res.body) ).toEqual(jasmine.arrayContaining(test_obj))
+        })
+        
+
         it ("expects a user subscriptions to be Created successfull" , async () => {
             let res = await request.post(`/users/${userID}/subs`).send(payload);
             expect( res.status ).toEqual(200)
