@@ -37,7 +37,7 @@ app.listen(PORT || 4000 , async () => {
 
 
 //testing the image Upload Middleware
-app.post("/register" , Middlewares.ImageUpload , async (req,res) => {
+app.post("/image" , Middlewares.ImageUpload , async (req,res) => {
     console.log(  `${req.protocol}://${req.hostname}:${PORT || 5000}/${req.file.originalname}`)
 
 
