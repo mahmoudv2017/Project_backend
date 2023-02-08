@@ -4,7 +4,7 @@ const app = require('../../server')
 describe("Tests the Promotions Endpoints" , () => {
 
     const request = supertest(app)
-    const test_obj = ["Sale_Percentage","DateStarted","DateExpired","old_price"]
+    const test_obj = ["Sale_Percentage","DateStarted","DateExpired","old_price" , "meal_id" ,"restaurantID"]
     let payload;
 
     beforeAll( async () => {
@@ -12,6 +12,8 @@ describe("Tests the Promotions Endpoints" , () => {
             Sale_Percentage : '15%',
             DateStarted : new Date(),
             DateExpired : new Date("11-16-2097"),
+            meal_id:'63e253ce76eaa2ba94d3f515',
+            restaurantID:'63e09029b1c53f282f3e6daa',
             old_price : 2000
         }
     })
