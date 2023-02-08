@@ -1,12 +1,11 @@
-const RestModel = require('../../Models/Restaurants/RestModel')
-
+const RestModel = (require('../../Models')).RestaurantModel
 
 
 module.exports = {
     ShowFunc :async (req,res,next)=>{
         try {
     
-            const results = await RestModel.findById(req.params.id)
+            const results = await RestModel.findById(req.params.id) //dont forget to populate .populate(['meals'])
             res.status(200).send(results)
         } catch (error) {
             next(error) 

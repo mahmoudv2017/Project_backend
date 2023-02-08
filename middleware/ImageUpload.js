@@ -15,8 +15,10 @@ const mystorage = multer.diskStorage({
             
             try {
                 await fs.access(path.join(target_path,file.originalname) )
+               
                 cb((error("File Already Exists" , 305)) , file.originalname)
             } catch (error) {
+                
                 cb(null , file.originalname)
             }
         }else{
@@ -32,12 +34,13 @@ const upload = multer({storage:mystorage  , limits:{
     fileSize:1024*1024*10
 }}).single('images')
 
-module.exports  = (req,res,next)=>{
+module.exports  = async (req,res,next)=>{
     upload(req,res,(err) => {
         if(err ){
             next(err)
             return
         }
+
         next()
     })
 }

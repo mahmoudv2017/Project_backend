@@ -87,11 +87,12 @@ const fillRestaurants = async (count) => {
             payload.push(
                 {
                     title: faker.animal.lion() ,
-                    image:	faker.image.url(),
+                    image:	faker.image.imageUrl(),
                     speciality: faker.lorem.words(4) ,
                     rating: (Math.random() * 5 ).toFixed(2) +1,
                     branches: [faker.address.cityName() + faker.address.streetAddress()],
                     description:faker.lorem.lines(2),
+                    meals:["63e253ce76eaa2ba94d3f515"],
                     social_media:{
                         facebook : 'https://www.facebook.com/',
                         twitter : 'https://twitter.com/home'

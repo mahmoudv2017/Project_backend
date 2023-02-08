@@ -19,7 +19,7 @@ const RestModel = new Schema({
     meals : [ //for the ability to increase subs in the future
         {
             type:types.ObjectId,
-            ref : 'meals '
+            ref : 'meals'
         }
     ]
 })

@@ -2,8 +2,10 @@ const express = require('express')
 const app = express()
 const colors = require('colors')
 const database = require('./database')
+const path = require('path')
 const multer = require('multer')
 const cors = require('cors')
+const fs = require('fs/promises')
 const Middlewares = require('./middleware')
 
 const Routes = require('./Routes')
@@ -18,10 +20,13 @@ app.use( express.static("views"))
 
 //error handling
 
+app.use(express.static("assets"))
+
 
 app.listen(PORT || 4000 , async () => {
     try {
         await database.Connect()
+
         console.log(colors.bold.green("Database Connected"))
     } catch (error) {
         console.log(colors.bold.red("Couldn't Connect to DB"))
@@ -31,12 +36,18 @@ app.listen(PORT || 4000 , async () => {
 })
 
 
-// testing the image Upload Middleware
-// app.post("/image" , imageUpload ,(req,res) => {
-//     res.status(200).send('donesdasd')
-    
-// } )
+//testing the image Upload Middleware
+app.post("/register" , Middlewares.ImageUpload , async (req,res) => {
+    console.log(  `${req.protocol}://${req.hostname}:${PORT || 5000}/${req.file.originalname}`)
 
+
+    res.status(200).send("Send Data to database")
+    
+} )
+app.get("/test" ,(req,res) => {
+
+    res.status(200).send("asd")
+})
 
 /**************************** Main Features *****************************/
 
