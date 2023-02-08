@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 const colors = require('colors')
 const database = require('./database')
+const multer = require('multer')
 const cors = require('cors')
+const Middlewares = require('./middleware')
 
 const Routes = require('./Routes')
 
@@ -22,12 +24,18 @@ app.listen(PORT || 4000 , async () => {
         await database.Connect()
         console.log(colors.bold.green("Database Connected"))
     } catch (error) {
-        console.log(error)
         console.log(colors.bold.red("Couldn't Connect to DB"))
     }
     
     console.log( colors.bold.cyan(`Served Hosted at http://localhost:${PORT}`) )
 })
+
+
+// testing the image Upload Middleware
+// app.post("/image" , imageUpload ,(req,res) => {
+//     res.status(200).send('donesdasd')
+    
+// } )
 
 
 /**************************** Main Features *****************************/
@@ -73,9 +81,6 @@ app.use("/sections" ,Routes.restRotues )
 */
 
 
-app.use((err, req, res, next) => {
-    console.error(err)
-    res.status(500).send('Something broke!')
-  })
+app.use(Middlewares.ErrorMiddleware)
 
 module.exports = app

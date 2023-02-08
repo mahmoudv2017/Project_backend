@@ -9,11 +9,13 @@ describe("Testing the Subscriptions Endpoints" , () => {
     beforeAll( async () => {
         const userID = (await request.get("/users")).body[0]
         payload = {
-            UserID : userID._id,
-            Username : userID.username,
-            Monthly_price : 15.99,
+            userID : userID._id,
+            username : userID.username,
+            monthly_price : 15.99,
             timeCreated: new Date(),
-            SubState : 'pending'
+            Dates : [ (new Date()).getHours()+ (new Date()).getMinutes()],
+            subState : 'pending',
+            meals : ['somthing']
         }
     } )
 

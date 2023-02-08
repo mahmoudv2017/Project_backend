@@ -5,11 +5,9 @@ describe("Tests the Promotions Endpoints" , () => {
 
     const request = supertest(app)
     const test_obj = ["Sale_Percentage","DateStarted","DateExpired","old_price"]
-    let payload ,restID , MealID;
+    let payload;
 
     beforeAll( async () => {
-        restID = (await request.get("/restaurants")).body[0]._id;
-        MealID = (await request.get(`/restaurants/${restID}/meals`)).body[0]._id ;
         payload = {
             Sale_Percentage : '15%',
             DateStarted : new Date(),
@@ -19,7 +17,7 @@ describe("Tests the Promotions Endpoints" , () => {
     })
     
     it("expects the Index Route To be successfull" , async () => {
-        let res = await request.get(`/Promotions`);
+        let res = await request.get(`/promotions`);
         expect( res.status ).toEqual(200)
         expect( Object.keys(res.body[0]) ).toEqual(jasmine.arrayContaining(test_obj))
     })
