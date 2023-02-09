@@ -37,13 +37,13 @@ app.listen(PORT || 4000 , async () => {
 
 
 //testing the image Upload Middleware
-app.post("/image" , Middlewares.ImageUpload , async (req,res) => {
-    console.log(  `${req.protocol}://${req.hostname}:${PORT || 5000}/${req.file.originalname}`)
+// app.post("/image" , Middlewares.ImageUpload , async (req,res) => {
+//     let pather = `${req.protocol}://${req.hostname}/${req.file.originalname}`
 
 
-    res.status(200).send("Send Data to database")
+//     res.status(200).send(pather)
     
-} )
+// } )
 app.get("/test" ,(req,res) => {
 
     res.status(200).send("asd")
