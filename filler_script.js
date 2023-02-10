@@ -3,11 +3,8 @@
 const database = require('./database')
 const {faker} =  require('@faker-js/faker');
 const colors = require('colors')
-const restModel = require('./Models/Restaurants/RestModel')
-const UserModel = require('./Models/Users/UserModel')
-const SubModel = require('./Models/Subs/SubModel')
-const MealModel = require('./Models/Restaurants/MealsModel');
-const MealsModel = require('./Models/Restaurants/MealsModel');
+const Models = require('./Models')
+
 
 let [,, type, count] = process.argv 
 console.log(type , count)
@@ -36,7 +33,7 @@ const fillUsers = async (count) => {
             )
         }
 
-        return await UserModel.insertMany(payload)
+        return await Models.UserModel.insertMany(payload)
 
     } catch (error) {
         throw new Error(error)
@@ -50,8 +47,8 @@ const fillSubs = async (count) => {
     // return
     try {
       
-        await database();
-        let userID = (await UserModel.find())[0]
+        await database.Connect();
+        let userID = (await Models.UserModel.find())[0]
 
         let payload = []
         let nowDate = new Date()
@@ -70,7 +67,7 @@ const fillSubs = async (count) => {
             )
         }
 
-        await SubModel.insertMany(payload)
+        await Models.SubModel.insertMany(payload)
         
 
     } catch (error) {
@@ -101,7 +98,7 @@ const fillRestaurants = async (count) => {
             )
         }
 
-        return await restModel.insertMany(payload)
+        return await Models.restModel.insertMany(payload)
 
     } catch (error) {
         throw new Error(error)
@@ -116,7 +113,7 @@ const fillMeals = async (count) => {
     // return
     try {
         await database.Connect();
-        const restID = (await restModel.find())[0]._id
+        const restID = (await Models.restModel.find())[0]._id
         let payload = []
         for (let index = 0; index < count; index++) {
             payload.push(
@@ -133,7 +130,7 @@ const fillMeals = async (count) => {
             )
         }
 
-        return await MealModel.insertMany(payload)
+        return await Models.MealModel.insertMany(payload)
 
     } catch (error) {
         throw new Error(error)
