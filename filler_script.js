@@ -1,13 +1,16 @@
-/// code for filling the DB 
+/// code for filling the DB
 
 const database = require('./database')
 const {faker} =  require('@faker-js/faker');
 const colors = require('colors')
-const Models = require('./Models')
+const restModel = require('./Models/Restaurants/RestModel')
+const UserModel = require('./Models/Users/UserModel')
+const SubModel = require('./Models/Subs/SubModel')
+const MealModel = require('./Models/Restaurants/MealsModel');
+const MealsModel = require('./Models/Restaurants/MealsModel');
 
-
-let [,, type, count] = process.argv 
-console.log(type , count)
+let [, , type, count] = process.argv;
+console.log(type, count);
 count = count || 5;
 
 const fillUsers = async (count) => {
@@ -33,13 +36,17 @@ const fillUsers = async (count) => {
             )
         }
 
-        return await Models.UserModel.insertMany(payload)
+        return await UserModel.insertMany(payload)
 
     } catch (error) {
         throw new Error(error)
     }
 
-}
+    return await Models.usersModel.insertMany(payload);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 const fillSubs = async (count) => {
     // await database();
@@ -47,8 +54,8 @@ const fillSubs = async (count) => {
     // return
     try {
       
-        await database.Connect();
-        let userID = (await Models.UserModel.find())[0]
+        await database();
+        let userID = (await UserModel.find())[0]
 
         let payload = []
         let nowDate = new Date()
@@ -67,14 +74,18 @@ const fillSubs = async (count) => {
             )
         }
 
-        await Models.SubModel.insertMany(payload)
+        await SubModel.insertMany(payload)
         
 
     } catch (error) {
        throw new Error(error)
     }
 
-}
+    await Models.subModel.insertMany(payload);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 const fillRestaurants = async (count) => {
     try {
@@ -98,13 +109,17 @@ const fillRestaurants = async (count) => {
             )
         }
 
-        return await Models.restModel.insertMany(payload)
+        return await restModel.insertMany(payload)
 
     } catch (error) {
         throw new Error(error)
     }
 
-}
+    return await Models.RestaurantModel.insertMany(payload);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 const fillMeals = async (count) => {
     // uncomment if you want to empty the collection
@@ -113,7 +128,7 @@ const fillMeals = async (count) => {
     // return
     try {
         await database.Connect();
-        const restID = (await Models.restModel.find())[0]._id
+        const restID = (await restModel.find())[0]._id
         let payload = []
         for (let index = 0; index < count; index++) {
             payload.push(
@@ -130,47 +145,58 @@ const fillMeals = async (count) => {
             )
         }
 
-        return await Models.MealModel.insertMany(payload)
+        return await MealModel.insertMany(payload)
 
     } catch (error) {
         throw new Error(error)
     }
 
+    return await Models.ReviewModel.insertMany(payload);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+switch (type) {
+  case "restaurants":
+    fillRestaurants(count).then(() => {
+      console.log(colors.bold.magenta("Data Added Successfully"));
+      process.exit(0);
+    });
+
+    break;
+
+  case "users":
+    fillUsers(count).then(() => {
+      console.log(colors.bold.magenta("Data Added Successfully"));
+      process.exit(0);
+    });
+
+    break;
+  case "subs":
+    fillSubs(count).then(() => {
+      console.log(colors.bold.magenta("Data Added Successfully"));
+      process.exit(0);
+    });
+
+    break;
+
+  case "meals":
+    fillMeals(count).then(() => {
+      console.log(colors.bold.magenta("Data Added Successfully"));
+      process.exit(0);
+    });
+
+    break;
+
+  case "review":
+    fillReview(count).then(() => {
+      console.log(colors.bold.magenta("Data Added Successfully"));
+      process.exit(0);
+    });
+
+    break;
+  default:
+    console.log("You Entered the wrong type");
+    return;
 }
-
-switch(type){
-    case 'restaurants':
-        fillRestaurants(count).then(() => {
-            console.log(colors.bold.magenta("Data Added Successfully"))
-            process.exit(0);
-        })
-        
-        break;
-
-    case 'users':
-        fillUsers(count).then(() => {
-            console.log(colors.bold.magenta("Data Added Successfully"))
-            process.exit(0);
-        })
-        
-        break;
-    case 'subs':
-        fillSubs(count).then(() => {
-            console.log(colors.bold.magenta("Data Added Successfully"))
-            process.exit(0);
-        })
-        
-        break;
-
-    case 'meals':
-        fillMeals(count).then(() => {
-            console.log(colors.bold.magenta("Data Added Successfully"))
-            process.exit(0);
-        })
-        
-        break;
-    default:
-        console.log("You Entered the wrong type")
-        return;
-}
-

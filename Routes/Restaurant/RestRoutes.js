@@ -1,53 +1,39 @@
-const express = require('express')
+const express = require("express");
 //const database = require('../database')
-const router = express.Router()
-const RestControls = require('../../controllers/Restaurants/restControl')
-const MealsRoutes = require('./mealsRoutes')
-const ReviewsRoutes = require('./ReviewRoutes')
+const router = express.Router();
+const RestControls = require("../../controllers/Restaurants/restControl");
+const MealsRoutes = require("./mealsRoutes");
+const ReviewsRoutes = require("./ReviewRoutes");
 
-
+/* current position: restaurants*/
 
 //========================================
 //          Meals Routes
 //========================================
-MealsRoutes(router)
-
+MealsRoutes(router);
 
 //========================================
 //          Reviews Routes
 //========================================
-ReviewsRoutes(router)
-
-
-
+ReviewsRoutes(router);
 
 //========================================
 //          Restaurant Routes
 //========================================
 
+/* Show Route */
+router.get("/:id", RestControls.ShowFunc);
 
+/* Index Route */
+router.get("/", RestControls.IndexFunc);
 
-/* Show Route */ 
-router.get("/:id"  , RestControls.ShowFunc)
+/* Create Route */
+router.post("/", RestControls.CreateFunc);
 
-/* Index Route */ 
-router.get("/" , RestControls.IndexFunc)
+/* Delete Route */
+router.delete("/:id", RestControls.DeleteFunc);
 
-/* Create Route */ 
-router.post("/" , RestControls.CreateFunc)
+/* Update Route */
+router.patch("/:id", RestControls.UpdateFunc);
 
-/* Delete Route */ 
-router.delete("/:id" , RestControls.DeleteFunc)
-
-/* Update Route */ 
-router.patch("/:id" , RestControls.UpdateFunc)
-
-
-
-
-
-
-
-
-
-module.exports = router
+module.exports = router;
