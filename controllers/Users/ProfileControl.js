@@ -33,7 +33,7 @@ module.exports = {
         req.params.id,
         req.body
       );
-      console.log(updateUser);
+ 
       res.status(200).send(updateUser);
     } catch (error) {
       next(error);
