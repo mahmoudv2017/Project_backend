@@ -6,6 +6,7 @@ const path = require('path')
 const multer = require('multer')
 const cors = require('cors')
 const fs = require('fs/promises')
+const morgan = require('morgan')
 const Middlewares = require('./middleware')
 
 const Routes = require('./Routes')
@@ -17,6 +18,7 @@ const {PORT} = process.env
 app.use(express.json())
 app.use(cors())
 app.use( express.static("views"))
+//app.use(morgan("combined"))
 
 //error handling
 
@@ -38,10 +40,11 @@ app.listen(PORT || 4000 , async () => {
 
 //testing the image Upload Middleware
 app.post("/image" , Middlewares.ImageUpload , async (req,res) => {
-    let pather = `${req.protocol}://${req.hostname}/${req.file.originalname}`
+    let pather = `${req.protocol}://${req.hostname}:${PORT}/${req.file.originalname}`
 
+    let posted_body = {...req.body , path:pather}
 
-    res.status(200).send(pather)
+    res.status(200).send(posted_body)
     
 } )
 app.get("/test" ,(req,res) => {

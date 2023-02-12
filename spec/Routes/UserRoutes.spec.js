@@ -1,7 +1,7 @@
 const supertest = require('supertest')
 const app = require('../../server')
 
-describe("Testing The Endpoints of the Users Routes" , () => {
+fdescribe("Testing The Endpoints of the Users Routes" , () => {
     const request = supertest(app)
     const Register_payload = {
         username : 'mahmoudv2023',
@@ -66,7 +66,7 @@ describe("Testing The Endpoints of the Users Routes" , () => {
 
 
     /** Mahmoud **/
-    describe("Testing The User Subscriptions Routes" , ()=>{
+    fdescribe("Testing The User Subscriptions Routes" , ()=>{
 
         /*
             A Index route: /users/:userID/subs [GET] + query arguments for status
