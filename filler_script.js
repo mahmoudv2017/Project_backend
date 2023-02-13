@@ -140,6 +140,28 @@ const fillReview = async (count) => {
     throw new Error(error);
   }
 };
+const fillPromotion = async (count) => {
+  try {
+    await database.Connect();
+    const restID = (await Models.RestaurantModel.find())[0]._id;
+    //const mealID = (await Models.MealModel.find())[0]._id;
+    console.log(mealID);
+    let payload = [];
+    for (let index = 0; index < count; index++) {
+      payload.push({
+        sales_percentage: "20%",
+        // mealId: mealID,
+        DateExpired: new Date(),
+        restaurantId: restID,
+        old_price: 50.5,
+      });
+    }
+
+    return await Models.PromoModel.insertMany(payload);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 switch (type) {
   case "restaurants":
@@ -175,6 +197,13 @@ switch (type) {
 
   case "review":
     fillReview(count).then(() => {
+      console.log(colors.bold.magenta("Data Added Successfully"));
+      process.exit(0);
+    });
+
+    break;
+  case "promotion":
+    fillPromotion(count).then(() => {
       console.log(colors.bold.magenta("Data Added Successfully"));
       process.exit(0);
     });
