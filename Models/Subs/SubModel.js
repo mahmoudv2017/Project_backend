@@ -17,13 +17,12 @@ const SubSchema = new Schema({
     Dates : {
         type:[String]
     },
-    timeCreated: Date,
     ExpirationDate : Date,
     substate : {
         type:String,
         enum :['pending' , 'active' , 'expired']
 
     }
-})
+} , {timestamps:true})
 
 module.exports = mongoose.model('subscriptions',SubSchema)

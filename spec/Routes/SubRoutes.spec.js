@@ -3,7 +3,7 @@ const app = require('../../server')
 
 describe("Testing the Subscriptions Endpoints" , () => {
     const request = supertest(app)
-    const test_obj = ["userID","username","meals","monthly_price","Dates","timeCreated","subState"]
+    const test_obj = ["userID","username","meals","monthly_price","Dates","createdAt","substate"]
     let payload;
 
     beforeAll( async () => {
@@ -12,10 +12,10 @@ describe("Testing the Subscriptions Endpoints" , () => {
             userID : userID._id,
             username : userID.username,
             monthly_price : 15.99,
-            timeCreated: new Date(),
+            ExpirationDate:new Date('16-11-2025'),
             Dates : [ (new Date()).getHours()+ (new Date()).getMinutes()],
-            subState : 'pending',
-            meals : ['somthing']
+            substate : 'pending',
+            meals : ['63e253ce76eaa2ba94d3f515']
         }
     } )
 
@@ -41,6 +41,11 @@ describe("Testing the Subscriptions Endpoints" , () => {
         
         expect( test_api.status ).toEqual(200)
         expect( Object.keys(test_api.body) ).toEqual(jasmine.arrayContaining(test_obj))
+    })
+    it("expects a subscription to be Created successfull" , async () => {
+        let rat = await request.post("/subs").send(payload);
+        expect( rat.status ).toEqual(200)
+        expect( Object.keys(rat.body) ).toEqual(jasmine.arrayContaining(test_obj))
     })
 
 

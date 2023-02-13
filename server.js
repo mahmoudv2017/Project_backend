@@ -39,18 +39,18 @@ app.listen(PORT || 4000 , async () => {
 
 
 //testing the image Upload Middleware
-app.post("/image" , Middlewares.ImageUpload , async (req,res) => {
-    let pather = `${req.protocol}://${req.hostname}:${PORT}/${req.file.originalname}`
+// app.post("/image" , Middlewares.ImageUpload , async (req,res) => {
+//     let pather = `${req.protocol}://${req.hostname}/${req.file.originalname}`
 
-    let posted_body = {...req.body , path:pather}
+//     let posted_body = {...req.body , path:pather}
 
-    res.status(200).send(posted_body)
+//     res.status(200).send(posted_body)
     
-} )
-app.get("/test" ,(req,res) => {
+// } )
+// app.get("/test" ,(req,res) => {
 
-    res.status(200).send("asd")
-})
+//     res.status(200).send("asd")
+// })
 
 /**************************** Main Features *****************************/
 

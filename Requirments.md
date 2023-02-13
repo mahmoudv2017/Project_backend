@@ -219,6 +219,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - id
 - username
 - userID
+- restaurantID
 - comment
 - impression (`Optional`)
 - timeCreated -- (`12 january 2023`)
