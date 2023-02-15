@@ -19,7 +19,7 @@ module.exports = {
             let results;
             if(req.query.search){
                  results = RestModel.find({$or : [
-                    {title :{ $regex: req.query.search, $options: 'i' }},
+                    {slug :{ $regex: req.query.search, $options: 'i' }},
                     {description :{ $regex: req.query.search, $options: 'i' }}
                  ]})
             }else{
