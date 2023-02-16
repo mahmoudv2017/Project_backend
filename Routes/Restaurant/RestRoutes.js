@@ -27,7 +27,7 @@ ReviewsRoutes(router);
 router.get("/:id", RestControls.ShowFunc);
 
 /* Index Route */
-router.get("/",Middlewares.VerifyToken, RestControls.IndexFunc);
+router.get("/", RestControls.IndexFunc);
 
 /* Create Route */
 router.post("/",Middlewares.ImageUpload ,  RestControls.CreateFunc);
