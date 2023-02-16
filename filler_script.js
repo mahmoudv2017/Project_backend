@@ -101,8 +101,8 @@ const fillMeals = async (count) => {
 
   try {
      await database.Connect();
-    //  await Models.MealModel.deleteMany({})
-    //  return
+   //   await Models.MealModel.deleteMany({})
+     // return
     const restID = (await Models.RestaurantModel.find())[0]._id;
     //console.log(restID)
     let payload = [];
@@ -114,8 +114,8 @@ const fillMeals = async (count) => {
         image: faker.image.imageUrl(),
         hasChoices: false,
         restaurantID: restID,
-        SectionName: "breakfast",
-        sectionId: "63e242951baea9c9e47ec76f",
+        SectionName: "Lunch",
+        sectionId: "63e32f17c71619653dc2ccde",
       });
     }
 
@@ -168,6 +168,8 @@ const fillPromotion = async (count) => {
     throw new Error(error);
   }
 };
+
+
 
 
 switch (type) {

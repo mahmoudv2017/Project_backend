@@ -4,8 +4,15 @@ module.exports={
     Indexfunc:async(req,res,next)=>
     {
         try {
-            const getmeal=await models.MealModel.find({restaurantID: Types.ObjectId(req.params.RestaurantID) });
-            res.status(200).json(getmeal);
+            let query;
+            if(req.query.section){
+                query=await models.MealModel.find({restaurantID: Types.ObjectId(req.params.RestaurantID) , SectionName:req.query.section });
+
+            }else{
+                query=await models.MealModel.find({restaurantID: Types.ObjectId(req.params.RestaurantID) });
+
+            }
+            res.status(200).json(query);
     
         } catch (error) {
             next(error)
