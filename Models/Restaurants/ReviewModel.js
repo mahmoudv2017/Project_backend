@@ -8,7 +8,7 @@ const ReviewModel = new Schema(
     comment: String,
     impression: { type: String, enum: ["very good", "good", "bad"] },
     //   timeCreated: [{ type: Date, default: Date.now }],
-    restaurantId: [{ type: types.ObjectId, ref: "restaurants" }],
+    restaurantId: { type: types.ObjectId, ref: "restaurants" },
   },
   {
     timestamps: true,

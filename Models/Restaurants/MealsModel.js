@@ -12,9 +12,10 @@ const meal_Schema=new Schema(
         price: Number ,
         rating:Number, 
         image:String,
-        haschoices:Boolean, 
-        sectionname:String,
-        sectionid:
+        restaurantID:{type:mongoose.Types.ObjectId},
+        hasChoices:Boolean, 
+        SectionName:String,
+        sectionId:
         {
             type:mongoose.Types.ObjectId
         }

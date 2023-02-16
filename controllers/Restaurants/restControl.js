@@ -27,7 +27,7 @@ module.exports = {
             }
             
 
-            res.status(200).send( await results)
+            res.status(200).send( await results.populate(['reviews','meals']))
         } catch (error) {
             next(error)
         }

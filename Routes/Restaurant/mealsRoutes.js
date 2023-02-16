@@ -18,8 +18,10 @@ A Update route: /Restaurants/:RestaurantID/meals/:id [PATCH]
 A Delete route: /Restaurants/:RestaurantID/meals/:id [DELETE]
 A Create route: /Restaurants/:RestaurantID/meals/ [POST]
 */
-const models=require('../../Models')
+
 const mealcontrol=require('../../controllers/Restaurants/mealsControllers')
+
+
 module.exports = function(router){
 router.get('/:RestaurantID/meals/',mealcontrol.Indexfunc)    
 router.get('/:RestaurantID/meals/:id',mealcontrol.Showfunc)

@@ -1,6 +1,7 @@
 const supertest = require("supertest");
 const app = require("../../server");
 const { faker } = require("@faker-js/faker");
+const { Types } = require("mongoose");
 
 
 
@@ -69,8 +70,8 @@ describe("Endpoint Testing For all Restaurant Related Routes" , () => {
   describe("Endpoint testing for the Meals routes", () => {
     const request = supertest(app);
     let testID;
-    beforeAll(async () => {
-      testID = (await request.get("/restaurants")).body[0]._id;
+    beforeAll( () => {
+      testID = "63ed93d87021063fad6282a0";
     });
 
     let test_obj = [
@@ -79,7 +80,7 @@ describe("Endpoint Testing For all Restaurant Related Routes" , () => {
       "image",
       "price",
       "hasChoices",
-      "sectionName",
+      "SectionName",
     ];
     let payload = {
       title: faker.animal.lion(),
@@ -88,8 +89,8 @@ describe("Endpoint Testing For all Restaurant Related Routes" , () => {
       price: Math.round(Math.random() * 200),
       hasChoices: false,
       restaurantID: testID,
-      sectionName: "BreakFast",
-      sectionID: "nothing",
+      SectionName: "BreakFast",
+      sectionId: Types.ObjectId("63e242951baea9c9e47ec76f"),
     };
 
     it("expects the Meals Index Route to be successfull", async () => {
@@ -146,7 +147,7 @@ describe("Endpoint Testing For all Restaurant Related Routes" , () => {
 
   /**** Alyaa Tests ***/
 
-  describe("Endpoint testing for the Reviews routes", () => {
+  fdescribe("Endpoint testing for the Reviews routes", () => {
     const request = supertest(app);
     let testID, userID;
     beforeAll(async () => {

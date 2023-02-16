@@ -4,6 +4,7 @@ const database = require("./database");
 const { faker } = require("@faker-js/faker");
 const colors = require("colors");
 const Models = require("./Models");
+const { Types } = require("mongoose");
 
 let [, , type, count] = process.argv;
 console.log(type, count);
@@ -67,8 +68,11 @@ const fillSubs = async (count) => {
 };
 
 const fillRestaurants = async (count) => {
+  
   try {
     await database.Connect();
+  
+   
     let payload = [];
     for (let index = 0; index < count; index++) {
       payload.push({
@@ -78,7 +82,7 @@ const fillRestaurants = async (count) => {
         rating: (Math.random() * 5).toFixed(2) + 1,
         branches: [faker.address.cityName() + faker.address.streetAddress()],
         description: faker.lorem.lines(2),
-        meals: ["63e253ce76eaa2ba94d3f515"],
+        meals: [],
         social_media: {
           facebook: "https://www.facebook.com/",
           twitter: "https://twitter.com/home",
@@ -94,12 +98,13 @@ const fillRestaurants = async (count) => {
 
 const fillMeals = async (count) => {
   // uncomment if you want to empty the collection
-  // await database.Connect();
-  // await MealsModel.deleteMany({})
-  // return
+
   try {
-    await database.Connect();
+     await database.Connect();
+    //  await Models.MealModel.deleteMany({})
+    //  return
     const restID = (await Models.RestaurantModel.find())[0]._id;
+    //console.log(restID)
     let payload = [];
     for (let index = 0; index < count; index++) {
       payload.push({
@@ -109,8 +114,8 @@ const fillMeals = async (count) => {
         image: faker.image.imageUrl(),
         hasChoices: false,
         restaurantID: restID,
-        sectionName: "breakfast",
-        sectionID: "63e242951baea9c9e47ec76f",
+        SectionName: "breakfast",
+        sectionId: "63e242951baea9c9e47ec76f",
       });
     }
 
@@ -122,6 +127,8 @@ const fillMeals = async (count) => {
 const fillReview = async (count) => {
   try {
     await database.Connect();
+    //await Models.ReviewModel.deleteMany()
+    //return;
     const restID = (await Models.RestaurantModel.find())[0]._id;
     const userID = (await Models.usersModel.find())[0];
     let payload = [];

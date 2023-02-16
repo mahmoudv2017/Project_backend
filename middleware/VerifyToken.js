@@ -8,7 +8,7 @@ const verfiy= async(req,res,next)=>
         if(req.headers.authorization)
         {
             let token=req.headers.authorization;
-             await JWT.verfiy(token,process.env.JWT_SECRET_KEY);
+            JWT.verify(token,process.env.JWT_SECRET_KEY)
         }
         next();
     }

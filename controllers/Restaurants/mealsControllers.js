@@ -1,9 +1,10 @@
+const { Types } = require('mongoose');
+const models = require('../../Models')
 module.exports={
     Indexfunc:async(req,res,next)=>
     {
         try {
-
-            const getmeal=await models.MealModel.find({resturantid:req.params.RestaurantID});
+            const getmeal=await models.MealModel.find({restaurantID: Types.ObjectId(req.params.RestaurantID) });
             res.status(200).json(getmeal);
     
         } catch (error) {
@@ -25,7 +26,7 @@ module.exports={
 {
     try {
         
-        const createone=models.MealModel.create(req.body);
+        const createone= await models.MealModel.create(req.body);
         res.status(200).json(createone);
     } catch (error) {
         next(error)

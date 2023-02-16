@@ -4,7 +4,8 @@ const router = express.Router();
 const RestControls = require("../../controllers/Restaurants/restControl");
 const MealsRoutes = require("./mealsRoutes");
 const ReviewsRoutes = require("./ReviewRoutes");
-const Middlewares = require('../../middleware')
+const Middlewares = require('../../middleware');
+
 
 /* current position: restaurants*/
 
@@ -26,7 +27,7 @@ ReviewsRoutes(router);
 router.get("/:id", RestControls.ShowFunc);
 
 /* Index Route */
-router.get("/", RestControls.IndexFunc);
+router.get("/",Middlewares.VerifyToken, RestControls.IndexFunc);
 
 /* Create Route */
 router.post("/",Middlewares.ImageUpload ,  RestControls.CreateFunc);
