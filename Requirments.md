@@ -179,6 +179,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Restaurants
 - _id
 - title
+- slug
 - image
 - speciality
 - rating
@@ -188,7 +189,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - reviews (another collection)
 - meals (another collection)
 
-    - collection schema : restaurants(title:string , image:string ,  speciality:string , rating:number , branches:array , description:string , social_media:Map , reviews:array , meals:array )
+    - collection schema : restaurants(title:string , slug:String , image:string ,  speciality:string , rating:number , branches:array , description:string , social_media:Map , reviews:array , meals:array )
 
 #### Meals
 - id
@@ -208,7 +209,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 - ID
 - Sale_Percentage
-- DateStarted
+- CreatedAt
 - DateExpired
 - meal_id
 - restaurantID
