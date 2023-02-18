@@ -3,6 +3,7 @@
 const database = require("./database");
 const { faker } = require("@faker-js/faker");
 const colors = require("colors");
+const {default:slugify} = require("slugify")
 const Models = require("./Models");
 const { Types } = require("mongoose");
 
@@ -71,12 +72,15 @@ const fillRestaurants = async (count) => {
   
   try {
     await database.Connect();
-  
+    //await Models.RestaurantModel.deleteMany({})
+    //return
    
     let payload = [];
     for (let index = 0; index < count; index++) {
+      let random_name = faker.animal.lion()
       payload.push({
-        title: faker.animal.lion(),
+        title: random_name,
+        slug:slugify(random_name),
         image: faker.image.imageUrl(),
         speciality: faker.lorem.words(4),
         rating: (Math.random() * 5).toFixed(2) + 1,
@@ -114,7 +118,7 @@ const fillMeals = async (count) => {
         image: faker.image.imageUrl(),
         hasChoices: false,
         restaurantID: restID,
-        SectionName: "Lunch",
+        SectionName: "dinner",
         sectionId: "63e32f17c71619653dc2ccde",
       });
     }
@@ -127,8 +131,8 @@ const fillMeals = async (count) => {
 const fillReview = async (count) => {
   try {
     await database.Connect();
-    //await Models.ReviewModel.deleteMany()
-    //return;
+    // await Models.ReviewModel.deleteMany()
+    // return;
     const restID = (await Models.RestaurantModel.find())[0]._id;
     const userID = (await Models.usersModel.find())[0];
     let payload = [];
@@ -137,6 +141,7 @@ const fillReview = async (count) => {
         userID: userID._id,
         username: userID.username,
         comment: faker.lorem.lines(1),
+        impression:'good',
         restaurantId: restID,
       });
     }

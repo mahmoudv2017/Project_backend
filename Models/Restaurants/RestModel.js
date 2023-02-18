@@ -4,6 +4,7 @@ const types = Schema.Types
 
 const RestModel = new Schema({
     title:String,
+    slug:String,
     image:String,
     speciality:String,
     rating:Number,
