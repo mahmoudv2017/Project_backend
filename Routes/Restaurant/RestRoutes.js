@@ -30,12 +30,12 @@ router.get("/:id", RestControls.ShowFunc);
 router.get("/", RestControls.IndexFunc);
 
 /* Create Route */
-router.post("/",Middlewares.ImageUpload ,  RestControls.CreateFunc);
+router.post("/" , Middlewares.ImageUpload ,  RestControls.CreateFunc);
 
 /* Delete Route */
 router.delete("/:id", RestControls.DeleteFunc);
 
 /* Update Route */
-router.patch("/:id", RestControls.UpdateFunc);
+router.patch("/:id", Middlewares.ImageUpload , RestControls.UpdateFunc);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const SubModel = require('../../Models/Subs/SubModel')
 
 module.exports = {
-
+   
     AddMealFunc : async(req,res,next)=>{
         try {
             const sub = await SubModel.findById(req.params.subID)
@@ -22,12 +22,12 @@ module.exports = {
             let {status} = req.query
             let results;
             if(status){
-                results = await SubModel.find({userID:req.params.userID , substate:status})
+                results =  SubModel.find({userID:req.params.userID , substate:status})
             }else{
-                results = await SubModel.find({userID:req.params.userID})
+                results =  SubModel.find({userID:req.params.userID})
 
             }
-            res.status(200).send(results)
+            res.status(200).send( await results.populate('meals'))
         } catch (error) {
            next(error)
         }

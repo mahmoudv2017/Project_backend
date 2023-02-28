@@ -52,8 +52,20 @@ module.exports={
     , 
     updatefunc :async(req,res,next)=>
     {
+        let pather;
+        let payload;
+        payload = {...req.body }
+        if(process.env.NODE_ENV == "dev" && req.file){
+             pather = `${req.protocol}://${req.hostname}:${process.env.PORT}/${req.file.originalname}`
+            payload = {...req.body , image:pather}
+        }else if(process.env.NODE_ENV != "dev"){
+            pather = `${req.protocol}://${req.hostname}/${req.file.originalname}`
+            payload = {...req.body , image:pather}
+        }
+      
+
         try {
-           const lastmeal= await models.MealModel.findByIdAndUpdate(req.params.id,req.body);
+           const lastmeal= await models.MealModel.findByIdAndUpdate(req.params.id,payload);
     
             res.status(200).json(lastmeal);
         } catch (error) {

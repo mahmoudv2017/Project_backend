@@ -19,6 +19,7 @@ A Delete route: /Restaurants/:RestaurantID/meals/:id [DELETE]
 A Create route: /Restaurants/:RestaurantID/meals/ [POST]
 */
 
+const Middlewares = require('../../middleware')
 const mealcontrol=require('../../controllers/Restaurants/mealsControllers')
 
 
@@ -26,8 +27,8 @@ module.exports = function(router){
 router.get('/:RestaurantID/meals/',mealcontrol.Indexfunc)    
 router.get('/:RestaurantID/meals/:id',mealcontrol.Showfunc)
 
-router.patch('/:RestaurantID/meals/:id',mealcontrol.updatefunc)
+router.patch('/:RestaurantID/meals/:id' , Middlewares.ImageUpload ,mealcontrol.updatefunc)
 
 router.delete('/:RestaurantID/meals/:id',mealcontrol.Deletefunc)
-router.post('/:RestaurantID/meals',mealcontrol.Createfunc)
+router.post('/:RestaurantID/meals',Middlewares.ImageUpload , mealcontrol.Createfunc)
 }

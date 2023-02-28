@@ -11,7 +11,7 @@ describe("Tests the Accounts Endpoints" , () => {
     }
 
     const Register_payload = {
-        username : faker.faker.internet.userName,
+        username : faker.faker.internet.userName(),
         firstName:'ay7aga',
         lastName : 'tester',
         gender : 'male',
@@ -19,7 +19,8 @@ describe("Tests the Accounts Endpoints" , () => {
         DOB:new Date('11-16-1997'),
         password:'test1235',
         email:'mahmmoudv2012@gmail.com',
-        address :['optional']
+        address :['optional'],
+        subscriptions:[]
 
     }
 

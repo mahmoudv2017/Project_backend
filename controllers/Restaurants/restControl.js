@@ -34,7 +34,16 @@ module.exports = {
     }
 ,
     CreateFunc : async (req,res,next)=>{
-        let pather = `${req.protocol}://${req.hostname}/${req.file ? req.file.originalname  : "for testing only"}`
+        let pather;
+        
+        if(process.env.NODE_ENV == "dev"){
+             pather = `${req.protocol}://${req.hostname}:${process.env.PORT}/${req.file ? req.file.originalname  : "for testing only"}`
+        
+        }else{
+            pather = `${req.protocol}://${req.hostname}/${req.file ? req.file.originalname  : "for testing only"}`
+
+        }
+
         let payload = {...req.body , image:pather}
         try {
             const results = await RestModel.create(payload)
@@ -45,7 +54,18 @@ module.exports = {
     }
 ,
     UpdateFunc : async (req,res,next)=>{
-        let payload = req.body
+        let pather;
+        
+        if(process.env.NODE_ENV == "dev"){
+             pather = `${req.protocol}://${req.hostname}:${process.env.PORT}/${req.file ? req.file.originalname  : "for testing only"}`
+        
+        }else{
+            pather = `${req.protocol}://${req.hostname}/${req.file ? req.file.originalname  : "for testing only"}`
+
+        }
+
+        let payload = {...req.body , image:pather}
+ 
         try {
             const results = await RestModel.findByIdAndUpdate(req.params.id , payload)
             res.status(200).send(results)

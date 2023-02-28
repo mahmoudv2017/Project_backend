@@ -18,7 +18,7 @@ module.exports = {
     
                 const hashpass=await bcrypt.hash(req.body.password,10);
                 req.body.password=hashpass;
-                await usersModel.create(req.body);
+              await usersModel.create(req.body);
                 res.status(200).json("user created");
                 
             
@@ -37,7 +37,7 @@ module.exports = {
             let token=JWT.sign({"userid":user.id},JWT_SECRET_KEY,{expiresIn:JWT_Expiration_TIME});
         
             res.json({"message":"Logged in success",
-        "Token-is":token});
+        "Token-is":token , "user_payload":user});
         
         } catch (error) {
                 next(error);

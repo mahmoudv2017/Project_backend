@@ -3,6 +3,7 @@ const UserRoutes = require("./Users/UserRoutes");
 const AccountRoutes = require("./Account/AccountRoutes");
 const PromoRoutes = require("./Promotions/PromoRoutes");
 const SubRoutes = require("./Subs/SubsRoutes");
+const AdminRoutes = require("./Admin/AdminRoutes")
 
 module.exports = {
   RestRotues,
@@ -10,4 +11,5 @@ module.exports = {
   AccountRoutes,
   PromoRoutes,
   SubRoutes,
+  AdminRoutes
 };

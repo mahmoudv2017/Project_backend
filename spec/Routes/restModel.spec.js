@@ -147,11 +147,11 @@ describe("Endpoint Testing For all Restaurant Related Routes" , () => {
 
   /**** Alyaa Tests ***/
 
-  fdescribe("Endpoint testing for the Reviews routes", () => {
+  describe("Endpoint testing for the Reviews routes", () => {
     const request = supertest(app);
     let testID, userID;
     beforeAll(async () => {
-      testID = (await request.get("/restaurants")).body[0]._id;
+      testID = '63eda2b3163ab93f5e725b36';
       userID = (await request.get("/users")).body[0]._id;
     });
 

@@ -6,15 +6,18 @@ const path = require('path')
 const multer = require('multer')
 const cors = require('cors')
 const fs = require('fs/promises')
+const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const Middlewares = require('./middleware')
-
+const formidable = require('express-formidable')
 const Routes = require("./Routes");
 
 require("dotenv").config();
 const { PORT } = process.env;
 
 app.use(express.json())
+
+
 app.use(cors())
 app.use( express.static("views"))
 //app.use(morgan("combined"))
@@ -72,6 +75,8 @@ app.use("/promotions", Routes.PromoRoutes);
 /* Alyaa */ /* Mahmoud */
 /******  Profile Routes (4) + User Subscriptions Routes (6)  ******/
 app.use("/users", Routes.UserRoutes);
+
+app.use("/admin", Routes.AdminRoutes);
 
 /* Mina */
 /****** Account Routes (2)   *********/

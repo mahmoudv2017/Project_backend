@@ -1,7 +1,7 @@
 
 
 const SubControls = require('../../controllers/Users/UserSubControl')
-
+const Milldewares = require('../../middleware')
 
 module.exports = function(router){
 
@@ -14,16 +14,16 @@ module.exports = function(router){
         A Delete route : /users/:userID/subs/:id [DELETE]
     */
 
+    
+    router.get("/:userID/subs" , Milldewares.VerifyToken , SubControls.IndexFunc)
 
-    router.get("/:userID/subs" , SubControls.IndexFunc)
+    router.get("/:userID/subs/:id" ,  Milldewares.VerifyToken ,SubControls.ShowFunc)
 
-    router.get("/:userID/subs/:id" , SubControls.ShowFunc)
+    router.patch("/:userID/subs/:id" , Milldewares.VerifyToken ,SubControls.EditFunc )
 
-    router.patch("/:userID/subs/:id" ,SubControls.EditFunc )
+    router.post("/:userID/subs/:subID/meals/:mealID" , Milldewares.VerifyToken , SubControls.AddMealFunc)
 
-    router.post("/:userID/subs/:subID/meals/:mealID" , SubControls.AddMealFunc)
+    router.post("/:userID/subs" ,  Milldewares.VerifyToken ,SubControls.CreateFunc )
 
-    router.post("/:userID/subs" , SubControls.CreateFunc )
-
-    router.delete("/:userID/subs/:id" , SubControls.DeleteFunc)
+    router.delete("/:userID/subs/:id" ,  Milldewares.VerifyToken ,SubControls.DeleteFunc)
 }

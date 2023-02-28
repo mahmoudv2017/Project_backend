@@ -6,6 +6,9 @@ const SubSchema = new Schema({
         type :mongoose.Types.ObjectId,
         ref:'users'
     },
+    restaurantID:{type:mongoose.Types.ObjectId , ref:'restaurants'},
+    restaurantName :String,
+    restaurantImg :String,
     username : String,
     meals : [
         {

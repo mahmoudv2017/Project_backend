@@ -47,18 +47,21 @@ const fillSubs = async (count) => {
   try {
     await database.Connect();
     let userID = (await Models.usersModel.find())[0];
-
+    let restaurant = (await Models.RestaurantModel.find())[4];
     let payload = [];
     let nowDate = new Date();
     for (let index = 0; index < count; index++) {
       payload.push({
         userID: userID._id,
         username: userID.username,
+        restaurantID:restaurant._id,
+        restaurantImg:restaurant.image,
+        restaurantName:restaurant.title,
         meals: [],
         monthly_price: 19.99,
         Dates: [nowDate.getHours() + " : " + nowDate.getMinutes() + " AM"],
         ExpirationDate: new Date(),
-        substate: "pending",
+        substate: "expired",
       });
     }
 
