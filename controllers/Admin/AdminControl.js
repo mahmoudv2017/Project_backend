@@ -49,4 +49,13 @@ module.exports =  {
             next(error)
         }
     }
+,
+    SubUpdateFunc:async(req,res,next)=>{
+        try {
+            await Models.subModel.findByIdAndUpdate(req.params.id , req.body)
+            res.status(200).send({msg:"Sub Updated"})
+        } catch (error) {
+            next(error)
+        }
+    }
 }

@@ -6,7 +6,7 @@ const AdminControls = require("./../../controllers/Admin/AdminControl");
 router.get("/subs", AdminControls.getAllSubs);
 
 router.delete("/subs/:id", AdminControls.DeleteFunc);
-
+router.patch("/subs/:id", AdminControls.SubUpdateFunc);
 router.get("/users", AdminControls.getAllUsers);
 
 router.patch("/users/:id", AdminControls.UpdateFunc);

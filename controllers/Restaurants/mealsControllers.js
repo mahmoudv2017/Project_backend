@@ -32,8 +32,16 @@ module.exports={
     Createfunc: async(req,res,next)=>
 {
     try {
-        
-        const createone= await models.MealModel.create(req.body);
+        let payload;
+
+        if(process.env.NODE_ENV == "dev" && req.file){
+            pather = `${req.protocol}://${req.hostname}:${process.env.PORT}/${req.file.originalname}`
+           payload = {...req.body , image:pather}
+       }else{
+           pather = `${req.protocol}://${req.hostname}/${req.file.originalname}`
+           payload = {...req.body , image:pather}
+       }
+        const createone= await models.MealModel.create(payload);
         res.status(200).json(createone);
     } catch (error) {
         next(error)
