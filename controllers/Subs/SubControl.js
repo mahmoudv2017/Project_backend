@@ -1,4 +1,4 @@
-const {subModel} = require('../../Models')
+const {subModel , usersModel} = require('../../Models')
 module.exports = {
     IndexFunc : async (req,res,next) => {
         try {
@@ -23,7 +23,12 @@ module.exports = {
     },
     CreateFunc : async (req,res,next) => {
         try {
+            console.log("ay7aga sub created")
             const results = await subModel.create(req.body)
+            const cuser = await usersModel.findById(req.body.userID)
+            cuser.subscriptions.push(results._id)
+            let user = await usersModel.findByIdAndUpdate(req.body.userID,cuser)
+            console.log("ay7aga sub created" , user)
             res.status(200).send(results)
         } catch (error) {
             next(error)

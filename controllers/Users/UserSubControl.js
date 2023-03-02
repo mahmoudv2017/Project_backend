@@ -1,4 +1,5 @@
 const SubModel = require('../../Models/Subs/SubModel')
+const userModel = require('../../Models/Users/UserModel')
 
 module.exports = {
    
@@ -55,7 +56,13 @@ module.exports = {
     CreateFunc : async (req,res,next) => {
      
         try {
+            console.log("ay7aga sub created")
             const results = await SubModel.create(req.body)
+            const cuser = await userModel.findById(req.body.userID)
+            console.log(cuser);
+            cuser.subscriptions.push(results._id)
+            let user = await userModel.findByIdAndUpdate(req.body.userID,cuser)
+            console.log("ay7aga sub created" , user)
             res.status(200).send(results)
         } catch (error) {
            next(error)
