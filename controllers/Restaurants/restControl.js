@@ -56,12 +56,12 @@ module.exports = {
     UpdateFunc : async (req,res,next)=>{
         let pather;
         
-        if(process.env.NODE_ENV == "dev"){
-             pather = `${req.protocol}://${req.hostname}:${process.env.PORT}/${req.file ? req.file.originalname  : "for testing only"}`
-        
-        }else{
-            pather = `${req.protocol}://${req.hostname}/${req.file ? req.file.originalname  : "for testing only"}`
-
+      if(process.env.NODE_ENV == "dev" && req.file){
+             pather = `${req.protocol}://${req.hostname}:${process.env.PORT}/${req.file.originalname}`
+    
+        }else if(process.env.NODE_ENV != "dev" && req.file ){
+            pather = `${req.protocol}://${req.hostname}/${req.file.originalname}`
+          
         }
 
         let payload = {...req.body , image:pather}
