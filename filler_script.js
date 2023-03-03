@@ -125,7 +125,7 @@ const fillMeals = async (count) => {
         sectionId: "63e32f17c71619653dc2ccde",
       });
     }
-
+    restID[0].meals.push(payload)
     return await Models.MealModel.insertMany(payload);
   } catch (error) {
     throw new Error(error);
@@ -176,6 +176,11 @@ const fillPromotion = async (count) => {
     throw new Error(error);
   }
 };
+
+
+
+
+
 
 
 
