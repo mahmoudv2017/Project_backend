@@ -7,17 +7,17 @@ require('dotenv').config()
 const unsplash = createApi({
     accessKey:process.env.UNSplashAccessKey
 })
-const controller = new AbortController();
-const signal = controller.signal;
+
 
 const asyncFunkoosh = async () => {
   await database.Connect()
-  const photos = await unsplash.search.getPhotos({ query: 'restaurant logo'  , page:1 , perPage:11})
-  const IDS = await Models.MealModel.find({})
+  const photos = await unsplash.search.getPhotos({ query: 'Restaurants Logos'  , page:1 , perPage:28})
+  console.log(photos.response.results.length)
+  const IDS = await Models.RestaurantModel.find({})
+  //console.log(IDS)
+    for (let index = 0 , y=0; index < IDS.length ; index++ , y++) {
 
-    for (let index = 0; index < 10; index++) {
-
-    await  Models.MealModel.findByIdAndUpdate(IDS[index]._id , {image:photos.response.results[index].urls.thumb})
+    await  Models.RestaurantModel.findByIdAndUpdate(IDS[index]._id , {image:photos.response.results[y].urls.regular})
       
     }
 }

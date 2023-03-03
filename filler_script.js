@@ -75,8 +75,8 @@ const fillRestaurants = async (count) => {
   
   try {
     await database.Connect();
-    //await Models.RestaurantModel.deleteMany({})
-    //return
+    // await Models.RestaurantModel.deleteMany({})
+    // return
    
     let payload = [];
     for (let index = 0; index < count; index++) {
@@ -105,12 +105,12 @@ const fillRestaurants = async (count) => {
 
 const fillMeals = async (count) => {
   // uncomment if you want to empty the collection
-
+  console.log("asd")
   try {
      await database.Connect();
-   //   await Models.MealModel.deleteMany({})
-     // return
-    const restID = (await Models.RestaurantModel.find())[0]._id;
+    //  await Models.MealModel.deleteMany({})
+    //  return
+    const restID = await Models.RestaurantModel.find();
     //console.log(restID)
     let payload = [];
     for (let index = 0; index < count; index++) {
@@ -120,8 +120,8 @@ const fillMeals = async (count) => {
         price: (Math.random() * 200).toFixed(2),
         image: faker.image.imageUrl(),
         hasChoices: false,
-        restaurantID: restID,
-        SectionName: "dinner",
+        restaurantID: restID[0]._id,
+        SectionName: "Lunch",
         sectionId: "63e32f17c71619653dc2ccde",
       });
     }

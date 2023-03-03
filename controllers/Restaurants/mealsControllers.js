@@ -37,7 +37,7 @@ module.exports={
         if(process.env.NODE_ENV == "dev" && req.file){
             pather = `${req.protocol}://${req.hostname}:${process.env.PORT}/${req.file.originalname}`
            payload = {...req.body , image:pather}
-       }else{
+       }else if(process.env.NODE_ENV != "dev" && req.file){
            pather = `${req.protocol}://${req.hostname}/${req.file.originalname}`
            payload = {...req.body , image:pather}
        }
@@ -66,11 +66,11 @@ module.exports={
         if(process.env.NODE_ENV == "dev" && req.file){
              pather = `${req.protocol}://${req.hostname}:${process.env.PORT}/${req.file.originalname}`
             payload = {...req.body , image:pather}
-        }else if(process.env.NODE_ENV != "dev"){
+        }else if(process.env.NODE_ENV != "dev" && req.file ){
             pather = `${req.protocol}://${req.hostname}/${req.file.originalname}`
             payload = {...req.body , image:pather}
         }
-      
+        console.log(req.body)
 
         try {
            const lastmeal= await models.MealModel.findByIdAndUpdate(req.params.id,payload);
